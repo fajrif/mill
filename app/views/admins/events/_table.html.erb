@@ -15,7 +15,7 @@
 					<td class="text-center"><%= event.id %></td>
 					<td><%= image_tag event.image.variant(resize_to_limit: [100,100]) if event.image.attached? %></td>
 					<td>
-						<h5 class="fs-14 mb-1"><%= link_to event.title, admins_event_path(event.id), class: "text-body" %></h5>
+						<h5 class="fs-14 mb-1"><%= link_to event.title, admins_event_path(event), class: "text-body" %></h5>
 					</td>
 					<td>
 						<h5 class="fs-14 mb-1"><%= event.published_label %></h5>
@@ -28,18 +28,18 @@
 							</button>
 							<ul class="dropdown-menu dropdown-menu-end">
 								<li>
-									<%= link_to admins_event_path(event.id), class: "dropdown-item" do %>
+									<%= link_to admins_event_path(event), class: "dropdown-item" do %>
 										<i class="ri-eye-fill align-bottom me-2 text-muted"></i> View
 									<% end %>
 								</li>
 								<li>
-									<%= link_to edit_admins_event_path(event.id), class: "dropdown-item edit-list" do %>
+									<%= link_to edit_admins_event_path(event), class: "dropdown-item edit-list" do %>
 										<i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit
 									<% end %>
 								</li>
 								<li class="dropdown-divider"></li>
 								<li>
-									<%= link_to admins_event_path(event.id), :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "dropdown-item remove-list" do %>
+									<%= link_to admins_event_path(event), :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "dropdown-item remove-list" do %>
 										<i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
 									<% end %>
 								</li>

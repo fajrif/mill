@@ -120,6 +120,10 @@ GEM
     configatron (4.5.1)
     connection_pool (2.5.3)
     crass (1.0.6)
+    database_cleaner-active_record (2.2.2)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0)
+    database_cleaner-core (2.0.1)
     date (3.4.1)
     devise (4.9.4)
       bcrypt (~> 3.0)
@@ -127,12 +131,21 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    diff-lcs (1.6.2)
+    docile (1.4.1)
     drb (2.2.3)
     email_validator (2.2.4)
       activemodel
     erb (5.0.2)
     erubi (1.13.1)
     execjs (2.10.0)
+    factory_bot (6.5.6)
+      activesupport (>= 6.1.0)
+    factory_bot_rails (6.4.4)
+      factory_bot (~> 6.5)
+      railties (>= 5.0.0)
+    faker (3.2.3)
+      i18n (>= 1.8.11, < 2)
     ffaker (2.24.0)
     ffi (1.17.2-aarch64-linux-gnu)
     ffi (1.17.2-aarch64-linux-musl)
@@ -296,6 +309,23 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
+    rspec-core (3.13.6)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.5)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.7)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-rails (6.1.5)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.13)
+      rspec-expectations (~> 3.13)
+      rspec-mocks (~> 3.13)
+      rspec-support (~> 3.13)
+    rspec-support (3.13.6)
     ruby-vips (2.2.5)
       ffi (~> 1.12)
       logger
@@ -308,9 +338,17 @@ GEM
       sprockets-rails
       tilt
     securerandom (0.4.1)
+    shoulda-matchers (6.5.0)
+      activesupport (>= 5.2.0)
     simple_form (5.3.1)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.13.2)
+    simplecov_json_formatter (0.1.4)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
       logger
@@ -359,8 +397,11 @@ DEPENDENCIES
   bootsnap
   chosen-rails
   configatron
+  database_cleaner-active_record (~> 2.1)
   devise
   email_validator
+  factory_bot_rails (~> 6.4.0)
+  faker (~> 3.2.0)
   ffaker
   file_exists (~> 0.2.0)
   friendly_id
@@ -375,7 +416,10 @@ DEPENDENCIES
   quilljs-rails!
   rails (~> 7.1.3, >= 7.1.3.2)
   remotipart (~> 1.2)
+  rspec-rails (~> 6.1.0)
+  shoulda-matchers (~> 6.0)
   simple_form
+  simplecov
   sprockets-rails
   unicorn
   web-console

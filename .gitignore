@@ -42,3 +42,9 @@ app-prod.yaml
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /config/credentials.yml.enc
+
+figma_screenshots/*
+.claude/**/*
+CLAUDE.md
+IMPLEMENTATION_GUIDE.md
+TEST_SUITE_SUMMARY.md

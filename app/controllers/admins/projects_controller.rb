@@ -5,7 +5,7 @@ class Admins::ProjectsController < Admins::BaseController
 		if params[:search].blank?
 			criteria = Project.all
 		else
-      criteria = Project.where("full_name ILIKE ?", "%#{params[:search]}%")
+      criteria = Project.where("name ILIKE ?", "%#{params[:search]}%")
 		end
 
     @projects = criteria.page(params[:page]).per(10)
@@ -24,9 +24,9 @@ class Admins::ProjectsController < Admins::BaseController
   def create
     @project = Project.new(params_project)
     if @project.save
-			redirect_to admins_project_path(@project.id), :notice => "Successfully created project."
+			redirect_to admins_project_path(@project), :notice => "Successfully created project."
     else
-      render :action => 'new'
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -38,9 +38,9 @@ class Admins::ProjectsController < Admins::BaseController
 
   def update
     if @project.update(params_project)
-			redirect_to admins_project_path(@project.id), :notice  => "Successfully updated project."
+			redirect_to admins_project_path(@project), :notice  => "Successfully updated project."
     else
-      render :action => 'edit'
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -52,10 +52,10 @@ class Admins::ProjectsController < Admins::BaseController
   private
 
   def params_project
-    params.require(:project).permit(:image, :banner, :name, :short_description, :description, :caption, images: [])
+    params.require(:project).permit(:image, :banner, :name, :client_name, :short_description, :description, :caption, images: [])
   end
 
   def set_project
-		@project = Project.find(params[:id])
+    @project = Project.friendly.find(params[:id])
   end
 end

@@ -1,4 +1,4 @@
-<%= simple_form_for @article, url: (@article.new_record? ? admins_articles_path : admins_article_path(@article.id)), method: (@article.new_record? ? :post : :put) do |f| %>
+<%= simple_form_for @article, url: (@article.new_record? ? admins_articles_path : admins_article_path(@article)), method: (@article.new_record? ? :post : :put) do |f| %>
 	<div class="row">
 		<div class="col-lg-8">
 			<div class="card">
@@ -14,7 +14,7 @@
 					<div class="form-actions">
 						<%= f.button :submit, :class => 'btn btn-secondary' %>
 						<% unless @article.new_record? %>
-							<%= link_to "Cancel", admins_article_path(@article.id), :class => 'btn btn-light' %>
+							<%= link_to "Cancel", admins_article_path(@article), :class => 'btn btn-light' %>
 						<% else %>
 							<%= link_to "Cancel", admins_articles_path, :class => 'btn btn-light' %>
 						<% end %>

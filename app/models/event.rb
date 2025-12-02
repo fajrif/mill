@@ -10,7 +10,7 @@ class Event < ApplicationRecord
 	has_one_attached :image, dependent: :purge
   has_rich_text :content
 
-	validates :image, content_type: ['image/png', 'image/jpeg'],
+	validates :image, attached: true, content_type: ['image/png', 'image/jpeg'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
 	validates_presence_of :title
 	validates_uniqueness_of :title

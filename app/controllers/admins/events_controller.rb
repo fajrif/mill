@@ -24,9 +24,9 @@ class Admins::EventsController < Admins::BaseController
   def create
     @event = Event.new(params_event)
     if @event.save
-			redirect_to admins_event_path(@event.id), :notice => "Successfully created event."
+			redirect_to admins_event_path(@event), :notice => "Successfully created event."
     else
-      render :action => 'new'
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -38,9 +38,9 @@ class Admins::EventsController < Admins::BaseController
 
   def update
     if @event.update(params_event)
-			redirect_to admins_event_path(@event.id), :notice  => "Successfully updated event."
+			redirect_to admins_event_path(@event), :notice  => "Successfully updated event."
     else
-      render :action => 'edit'
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -54,7 +54,7 @@ class Admins::EventsController < Admins::BaseController
 			flash[:notice] = "Successfully delete attachment."
 			@event.file.purge
 		end
-		redirect_to admins_event_path(@event.id)
+		redirect_to admins_event_path(@event)
 	end
 
 	def delete_attachment_image
@@ -62,7 +62,7 @@ class Admins::EventsController < Admins::BaseController
 			flash[:notice] = "Successfully delete image."
 			@event.image.purge
 		end
-		redirect_to admins_event_path(@event.id)
+		redirect_to admins_event_path(@event)
 	end
 
   private
@@ -72,6 +72,6 @@ class Admins::EventsController < Admins::BaseController
   end
 
   def set_event
-		@event = Event.find(params[:id])
+    @event = Event.friendly.find(params[:id])
   end
 end

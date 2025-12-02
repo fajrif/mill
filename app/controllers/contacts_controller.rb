@@ -9,21 +9,25 @@ class ContactsController < ApplicationController
 		@contact = Contact.new(params_contact)
 
 		if @contact.valid?
-			unless @contact.use_v2.blank?
-				unless Mill::Recaptcha.verify_recaptcha_v2?(params['g-recaptcha-response'], 'contact')
-					flash[:alert] = t('global.recaptcha_failed')
-					@show_recaptcha_v2 = true
-				else
-					create_data
-				end
-			else
-				unless Mill::Recaptcha.verify_recaptcha?(params[:recaptcha_token], 'contact')
-					flash[:alert] = t('global.recaptcha_failed')
-					@show_recaptcha_v2 = true
-				else
-					create_data
-				end
-			end
+      if Rails.env.production?
+        unless @contact.use_v2.blank?
+          unless Mill::Recaptcha.verify_recaptcha_v2?(params['g-recaptcha-response'], 'contact')
+            flash[:alert] = t('global.recaptcha_failed')
+            @show_recaptcha_v2 = true
+          else
+            create_data
+          end
+        else
+          unless Mill::Recaptcha.verify_recaptcha?(params[:recaptcha_token], 'contact')
+            flash[:alert] = t('global.recaptcha_failed')
+            @show_recaptcha_v2 = true
+          else
+            create_data
+          end
+        end
+      else
+        create_data
+      end
 		else
 			flash[:alert] = t('inquiries.errors')
 		end

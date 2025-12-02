@@ -57,6 +57,15 @@ group :development, :test do
   gem 'pry-rails'
   gem 'ffaker'
 	gem "letter_opener"
+  gem 'rspec-rails', '~> 6.1.0'
+  gem 'factory_bot_rails', '~> 6.4.0'
+  gem 'faker', '~> 3.2.0'
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 6.0'
+  gem 'database_cleaner-active_record', '~> 2.1'
+  gem 'simplecov', require: false
 end
 
 group :development do

@@ -5,7 +5,7 @@ class Admins::ProductsController < Admins::BaseController
 		if params[:search].blank?
 			criteria = Product.all
 		else
-      criteria = Product.where("full_name ILIKE ?", "%#{params[:search]}%")
+      criteria = Product.where("name ILIKE ?", "%#{params[:search]}%")
 		end
 
     @products = criteria.page(params[:page]).per(10)
@@ -24,9 +24,9 @@ class Admins::ProductsController < Admins::BaseController
   def create
     @product = Product.new(params_product)
     if @product.save
-			redirect_to admins_product_path(@product.id), :notice => "Successfully created product."
+			redirect_to admins_product_path(@product), :notice => "Successfully created product."
     else
-      render :action => 'new'
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -38,9 +38,9 @@ class Admins::ProductsController < Admins::BaseController
 
   def update
     if @product.update(params_product)
-			redirect_to admins_product_path(@product.id), :notice  => "Successfully updated product."
+			redirect_to admins_product_path(@product), :notice  => "Successfully updated product."
     else
-      render :action => 'edit'
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -56,6 +56,6 @@ class Admins::ProductsController < Admins::BaseController
   end
 
   def set_product
-		@product = Product.find(params[:id])
+    @product = Product.friendly.find(params[:id])
   end
 end

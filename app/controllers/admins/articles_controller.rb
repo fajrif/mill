@@ -27,9 +27,9 @@ class Admins::ArticlesController < Admins::BaseController
   def create
     @article = Article.new(params_article)
     if @article.save
-			redirect_to admins_article_path(@article.id), :notice => "Successfully created article."
+			redirect_to admins_article_path(@article), :notice => "Successfully created article."
     else
-      render :action => 'new'
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -41,9 +41,9 @@ class Admins::ArticlesController < Admins::BaseController
 
   def update
     if @article.update(params_article)
-			redirect_to admins_article_path(@article.id), :notice  => "Successfully updated article."
+			redirect_to admins_article_path(@article), :notice  => "Successfully updated article."
     else
-      render :action => 'edit'
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -57,7 +57,7 @@ class Admins::ArticlesController < Admins::BaseController
 			flash[:notice] = "Successfully delete attachment."
 			@article.file.purge
 		end
-		redirect_to admins_article_path(@article.id)
+		redirect_to admins_article_path(@article)
 	end
 
 	def delete_attachment_image
@@ -65,7 +65,7 @@ class Admins::ArticlesController < Admins::BaseController
 			flash[:notice] = "Successfully delete image."
 			@article.image.purge
 		end
-		redirect_to admins_article_path(@article.id)
+		redirect_to admins_article_path(@article)
 	end
 
   private
@@ -75,6 +75,6 @@ class Admins::ArticlesController < Admins::BaseController
   end
 
   def set_article
-		@article = Article.find(params[:id])
+    @article = Article.friendly.find(params[:id])
   end
 end

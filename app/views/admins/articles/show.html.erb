@@ -16,8 +16,8 @@
 					</div>
 				</div>
 				<div class="form-actions">
-					<%= link_to 'Edit', edit_admins_article_path(@article.id), :class => 'btn btn-secondary' %>
-					<%= link_to 'Destroy', admins_article_path(@article.id), :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-danger' %>
+					<%= link_to 'Edit', edit_admins_article_path(@article), :class => 'btn btn-secondary' %>
+					<%= link_to 'Destroy', admins_article_path(@article), :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-danger' %>
 					<%= link_to 'View All', admins_articles_path, :class => 'btn btn-light' %>
 				</div>
 			</div>
