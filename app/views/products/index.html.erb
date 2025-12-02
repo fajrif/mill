@@ -1,0 +1,41 @@
+<%= render "banner" %>
+<section class="wow animate__fadeIn">
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto text-center">
+                <h5 class="alt-font text-extra-dark-gray mb-2"><%= t('products.caption') %></h5>
+                <h3 class="alt-font text-extra-dark-gray font-weight-400"><%= t('products.title') %></h3>
+                <p class="w-100 mx-auto d-inline-block sm-w-100"><%= t('products.desc') %></p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content-center">
+          <% @products.each_with_index do |product, index| %>
+            <!-- start services item -->
+            <div class="col-12 <%= 'col-md-6' if index > 0 %> margin-40px-bottom sm-margin-20px-bottom wow animate__fadeInUp">
+                <div class="margin-20px-bottom overflow-hidden image-hover-style-1">
+                  <a href="<%= product_path(product) %>">
+                    <% if index == 0 %>
+                      <%= image_tag url_for(product.image.variant(resize_to_fill: [1024, 450])), class: "w-100" %>
+                    <% else %>
+                      <%= image_tag url_for(product.image), class: "w-100" %>
+                    <% end %>
+                  </a>
+                </div>
+                <div>
+                  <a href="<%= product_path(product) %>" class="alt-font margin-10px-bottom d-block text-extra-large text-extra-dark-gray font-weight-600"><%= product.title %></a>
+                  <p><%= product.short_description %></p>
+                </div>
+                <div>
+                  <a href="<%= product_path(product) %>" class="text-uppercase alt-font text-extra-dark-gray font-weight-400 text-medium w-100">Read More <i class="ti-arrow-right margin-5px-left text-black text-medium position-relative top-2" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <!-- end services item -->
+          <% end %>
+      </div>
+      <div class="text-center margin-five-top wow animate__fadeInUp">
+        <%= paginate @products, theme: :pofo %>
+      </div>
+    </div>
+</section>

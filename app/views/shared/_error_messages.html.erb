@@ -1,0 +1,10 @@
+<% if target.errors.any? %>
+<div class="sidebox widget">
+  <h3><%= pluralize(target.errors.count, "error") + " prohibited this record from being saved:" %></h3>
+  <ul class="list circled" style="color:#d6253a;">
+    <% target.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>

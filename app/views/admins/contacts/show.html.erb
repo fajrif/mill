@@ -1,0 +1,39 @@
+<% title_page("Contact Inquiry details") %>
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<table class="table table-hover">
+					<tr>
+						<td style="width:15%;"><b>ID</b></td>
+						<td><%= @contact.id %></td>
+					</tr>
+					<tr>
+						<td><b>Name</b></td>
+						<td><b><%= @contact.name %></b></td>
+					</tr>
+					<tr>
+						<td><b>Email</b></td>
+						<td><%= link_to @contact.email, "mailto:#{@contact.email}" %></td>
+					</tr>
+					<tr>
+						<td><b>Phone</b></td>
+						<td><%= @contact.phone %></td>
+					</tr>
+					<tr>
+						<td><b>Message</b></td>
+						<td><%= @contact.message %></td>
+					</tr>
+					<tr>
+						<td><b>Created At</b></td>
+						<td><%= @contact.created_at.strftime('%d/%m/%Y %H:%M') %></td>
+					</tr>
+				</table>
+				<div class="form-actions">
+					<%= link_to 'Destroy', admins_contact_path(@contact), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
+					<%= link_to 'View All', admins_contacts_path, :class => 'btn btn-light' %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

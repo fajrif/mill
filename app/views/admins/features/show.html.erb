@@ -1,0 +1,42 @@
+<% title_page("Feature details") %>
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<table class="table table-hover">
+					<tr>
+						<td style="width:15%;"><b>ID</b></td>
+						<td><%= @feature.id %></td>
+					</tr>
+          <tr>
+						<td><b>Image</b></td>
+            <td><%= image_tag @feature.image.variant(resize_to_limit: [100,100]) if @feature.image.attached? %></td>
+          </tr>
+					<tr>
+						<td><b>Name</b></td>
+						<td>
+							<h5 class="fs-14 mb-0 text-body"><%= @feature.name %></h5>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Caption</b></td>
+						<td><%= @feature.caption %></td>
+					</tr>
+					<tr>
+						<td><b>Short Description</b></td>
+						<td><%= @feature.short_description %></td>
+					</tr>
+					<tr>
+						<td><b>Description</b></td>
+						<td><%= @feature.description %></td>
+					</tr>
+				</table>
+				<div class="form-actions">
+					<%= link_to 'Edit', edit_admins_feature_path(@feature), :class => 'btn btn-secondary' %>
+					<%= link_to 'Destroy', admins_feature_path(@feature), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
+					<%= link_to 'View All', admins_features_path, :class => 'btn btn-light' %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

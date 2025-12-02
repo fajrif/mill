@@ -1,0 +1,22 @@
+<%= flash_message2 %>
+<%= simple_form_for @contact || Contact.new, url: contact_path, method: :post, remote: true do |f| %>
+  <div class="row">
+    <div class="col-12">
+      <%= f.input :name, label: false, placeholder: "First Name & Last Name", input_html: { class: "input-border-bottom" } %>
+      <%= f.input :email, label: false, placeholder: "Email", input_html: { class: "input-border-bottom" } %>
+      <%= f.input :phone, label: false, placeholder: "Phone", input_html: { class: "input-border-bottom" } %>
+      <%= f.input :message, label: false, placeholder: "Message", input_html: { class: "input-border-bottom" } %>
+    </div>
+    <div class="col-12">
+      <% if @show_recaptcha_v2 %>
+        <input type="hidden" value="true" name="contact[use_v2]" id="contact_use_v2">
+        <%= raw Mill::Recaptcha.recaptcha_v2_render %>
+      <% else %>
+        <%= raw Mill::Recaptcha.recaptcha_execute('contact') %>
+      <% end %>
+      <div class="text-center text-md-start margin-15px-top">
+        <button type="submit" class="btn btn-large btn-transparent-black text-uppercase">Submit</button>
+      </div>
+    </div>
+  </div>
+<% end %>

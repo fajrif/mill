@@ -1,0 +1,52 @@
+<!-- start footer -->
+<footer class="footer-standard cover-background footer-bg">
+    <div class="footer-widget-area padding-three-tb sm-padding-30px-tb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 widget md-margin-30px-bottom text-center text-sm-start">
+                    <!-- start logo -->
+                    <%= link_to root_path, class: "margin-20px-bottom d-inline-block" do %>
+                      <%= image_tag('logo-black.png', class: "footer-logo") %>
+                    <% end %>
+                    <!-- end logo -->
+                    <p class="d-inline-block w-70 lg-w-70 sm-w-95 xs-w-95">Mill aims to create a better alumunium, sophisticated environment where all can experience advanced level of design.</p>
+                </div>
+                <!-- start additional links -->
+                <div class="col-6 col-md-3 widget d-none d-md-block padding-45px-left md-padding-15px-left md-margin-30px-bottom link-style-2">
+                    <div class="widget-title alt-font text-extra-dark-gray text-uppercase margin-20px-bottom font-weight-600">Menu</div>
+                    <ul class="text-double-extra-large list-unstyled">
+                      <li><a href="<%= root_url %>">Home</a></li>
+                      <li><a href="<%= about_url %>">About</a></li>
+                      <li><a href="<%= products_url %>">Products</a></li>
+                      <li><a href="<%= projects_url %>">Projects</a></li>
+                      <li><a href="<%= articles_url %>">Articles</a></li>
+                      <li><a href="<%= contact_url %>">Contact Us</a></li>
+                    </ul>
+                </div>
+                <!-- end additional links -->
+                <!-- start contact information -->
+                <div class="col-12 col-md-3 widget text-center text-md-start padding-45px-left md-padding-15px-left xs-margin-30px-bottom link-style-2">
+                    <div class="widget-title alt-font text-extra-dark-gray text-uppercase margin-20px-bottom font-weight-600">Contact</div>
+                    <p class="text-medium d-inline-block d-md-block margin-25px-bottom"><%= raw configatron.company_address %></p>
+                    <div class="margin-10px-bottom">T: <%= link_to configatron.company_phone, "tel:#{configatron.company_phone}" %></div>
+                    <div class="margin-10px-bottom">T: <%= link_to configatron.company_phone1, "tel:#{configatron.company_phone1}" %></div>
+                    <div class="margin-20px-bottom">E: <a href="mailto:<%= configatron.company_email %>" class="text-deep-pink-hover"><%= configatron.company_email %></a></div>
+                    <!-- start social media -->
+                    <div class="social-icon-style-8 d-inline-block align-middle">
+                        <ul class="medium-icon mb-0">
+                          <li><a href="<%= configatron.social_facebook_url %>" target="_blank" class="text-extra-dark-gray hover-style-facebook margin-one-lr"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>
+                          <li><a href="<%= configatron.social_instagram_url %>" target="_blank" class="text-extra-dark-gray hover-style-instagram margin-one-lr"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+                          <li><a href="<%= configatron.social_whatsapp_url %>" target="_blank" class="text-extra-dark-gray hover-style-whatsapp margin-one-lr"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a></li>
+                          <li><a href="<%= configatron.social_youtube_url %>" target="_blank" class="text-extra-dark-gray hover-style-youtube margin-one-lr"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></li>
+                          <li><a href="<%= configatron.social_tiktok_url %>" target="_blank" class="text-extra-dark-gray hover-style-tiktok margin-one-lr"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- end social media -->
+                </div>
+                <!-- end contact information -->
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- end footer -->
+

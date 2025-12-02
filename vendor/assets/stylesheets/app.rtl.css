@@ -1,0 +1,76 @@
+body {
+  font-size: 18px;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  text-align: right;
+}
+ol, ul {
+    padding-left: 0 !important;
+    padding-right: 2rem;
+}
+
+.text-extra-small {font-size:14px; line-height:14px}
+.text-small {font-size:16px; line-height:20px}
+.text-medium {font-size:18px; line-height:23px}
+.text-large {font-size:20px; line-height:26px}
+.text-extra-large {font-size: 22px; line-height:26px}
+
+.btn.btn-extra-large {
+  font-size: 18px;
+}
+
+.partner-connect-macbook {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+footer .extra-small-icon li:last-child, footer .small-icon li:last-child, footer .medium-icon li:last-child, footer .large-icon li:last-child, footer .extra-large-icon li:last-child {
+  margin-left: 0;
+  margin-right: 10px;
+}
+
+.feature-box-18 {
+  direction: ltr;
+}
+
+.feature-box-18 h1,
+.feature-box-18 h2,
+.feature-box-18 h3,
+.feature-box-18 h4,
+.feature-box-18 h5,
+.feature-box-18 h6,
+.feature-box-18 p {
+  text-align: left !important;
+}
+
+.dropdown-style-1 .dropdown-menu {
+  left: 0 !important;
+  right: auto !important;
+}
+
+.list-unstyled {
+  padding-right: 0 !important;
+}
+
+.contain-bottom-background-50 {
+  background-position: bottom right !important;
+}
+
+header nav .navbar-nav > li > a {
+  font-size: 18px;
+}
+
+@media (min-width: 768px) {
+    .offset-md-3 {
+        margin-left: initial;
+        margin-right: 25%;
+    }
+    .text-md-start {
+        text-align: right !important;
+    }
+    .pe-md-0 {
+        padding-right: initial !important;
+        padding-left: 0 !important;
+    }
+}
