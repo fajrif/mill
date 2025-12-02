@@ -3,29 +3,25 @@
 		<thead class="table-light">
 			<tr>
 				<th class="text-center">ID</th>
-				<th>Photo</th>
-				<th>Full Name</th>
-				<th>Message</th>
+				<th>Image</th>
+				<th>Name</th>
+				<th>Caption</th>
 				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
-			<% for testimonial in @testimonials %>
+			<% for project in @projects %>
 				<tr>
-					<td class="text-center"><%= testimonial.id %></td>
+					<td class="text-center"><%= project.id %></td>
 					<td>
-						<% if testimonial.photo.attached? %>
-							<%= image_tag testimonial.photo.variant(resize_to_limit: [80,80]) %>
-						<% else %>
-							<%= image_tag('default-testimonial.png') %>
+						<% if project.image.attached? %>
+							<%= image_tag project.image.variant(resize_to_limit: [80,80]) %>
 						<% end %>
 					</td>
 					<td>
-						<h5 class="fs-14 mb-1"><%= link_to testimonial.full_name, admins_testimonial_path(testimonial), class: "text-body" %></h5>
+						<h5 class="fs-14 mb-1"><%= link_to project.name, admins_project_path(project), class: "text-body" %></h5>
 					</td>
-					<td>
-						<%= truncate_text(testimonial.comment, 250) %>
-					</td>
+					<td><%= project.caption %></td>
 					<td>
 						<div class="dropdown">
 							<button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -33,18 +29,18 @@
 							</button>
 							<ul class="dropdown-menu dropdown-menu-end">
 								<li>
-									<%= link_to admins_testimonial_path(testimonial), class: "dropdown-item" do %>
+									<%= link_to admins_project_path(project), class: "dropdown-item" do %>
 										<i class="ri-eye-fill align-bottom me-2 text-muted"></i> View
 									<% end %>
 								</li>
 								<li>
-									<%= link_to edit_admins_testimonial_path(testimonial), class: "dropdown-item edit-list" do %>
+									<%= link_to edit_admins_project_path(project), class: "dropdown-item edit-list" do %>
 										<i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit
 									<% end %>
 								</li>
 								<li class="dropdown-divider"></li>
 								<li>
-									<%= link_to admins_testimonial_path(testimonial), :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "dropdown-item remove-list" do %>
+									<%= link_to admins_project_path(project), :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "dropdown-item remove-list" do %>
 										<i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
 									<% end %>
 								</li>
@@ -57,4 +53,4 @@
 	</table>
 </div>
 <!-- pagination -->
-<%= paginate @testimonials %>
+<%= paginate @projects %>

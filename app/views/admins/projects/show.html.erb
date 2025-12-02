@@ -1,4 +1,4 @@
-<% title_page("testimonial details") %>
+<% title_page("Project details") %>
 <div class="row">
 	<div class="col-12">
 		<div class="card">
@@ -6,31 +6,53 @@
 				<table class="table table-hover">
 					<tr>
 						<td style="width:15%;"><b>ID</b></td>
-						<td><%= @testimonial.id %></td>
+						<td><%= @project.id %></td>
 					</tr>
-					<% if @testimonial.photo.attached? %>
+					<% if @project.image.attached? %>
 					<tr>
 						<td><b>Image</b></td>
 						<td>
-							<%= image_tag @testimonial.photo.variant(resize_to_limit: [100,100]) %>
+							<%= image_tag @project.image.variant(resize_to_limit: [100,100]) %>
+						</td>
+					</tr>
+					<% end %>
+					<% if @project.banner.attached? %>
+					<tr>
+						<td><b>Banner</b></td>
+						<td>
+							<%= image_tag @project.banner.variant(resize_to_limit: [100,100]) %>
 						</td>
 					</tr>
 					<% end %>
 					<tr>
-						<td><b>Full Name</b></td>
+						<td><b>Name</b></td>
 						<td>
-							<h5 class="fs-14 mb-0 text-body"><%= @testimonial.full_name %></h5>
+							<h5 class="fs-14 mb-0 text-body"><%= @project.name %></h5>
 						</td>
 					</tr>
 					<tr>
-						<td><b>Comment</b></td>
-						<td><%= @testimonial.comment %></td>
+						<td><b>Caption</b></td>
+						<td>
+							<%= @project.name %>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Short Description</b></td>
+						<td>
+							<%= @project.short_description %>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Description</b></td>
+						<td>
+							<%= @project.description %>
+						</td>
 					</tr>
 				</table>
 				<div class="form-actions">
-					<%= link_to 'Edit', edit_admins_testimonial_path(@testimonial), :class => 'btn btn-secondary' %>
-					<%= link_to 'Destroy', admins_testimonial_path(@testimonial), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
-					<%= link_to 'View All', admins_testimonials_path, :class => 'btn btn-light' %>
+					<%= link_to 'Edit', edit_admins_project_path(@project), :class => 'btn btn-secondary' %>
+					<%= link_to 'Destroy', admins_project_path(@project), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
+					<%= link_to 'View All', admins_projects_path, :class => 'btn btn-light' %>
 				</div>
 			</div>
 		</div>

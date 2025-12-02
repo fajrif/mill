@@ -1,4 +1,4 @@
-<% title_page("testimonial details") %>
+<% title_page("Product details") %>
 <div class="row">
 	<div class="col-12">
 		<div class="card">
@@ -6,31 +6,53 @@
 				<table class="table table-hover">
 					<tr>
 						<td style="width:15%;"><b>ID</b></td>
-						<td><%= @testimonial.id %></td>
+						<td><%= @product.id %></td>
 					</tr>
-					<% if @testimonial.photo.attached? %>
+					<% if @product.image.attached? %>
 					<tr>
 						<td><b>Image</b></td>
 						<td>
-							<%= image_tag @testimonial.photo.variant(resize_to_limit: [100,100]) %>
+							<%= image_tag @product.image.variant(resize_to_limit: [100,100]) %>
+						</td>
+					</tr>
+					<% end %>
+					<% if @product.banner.attached? %>
+					<tr>
+						<td><b>Banner</b></td>
+						<td>
+							<%= image_tag @product.banner.variant(resize_to_limit: [100,100]) %>
 						</td>
 					</tr>
 					<% end %>
 					<tr>
-						<td><b>Full Name</b></td>
+						<td><b>Name</b></td>
 						<td>
-							<h5 class="fs-14 mb-0 text-body"><%= @testimonial.full_name %></h5>
+							<h5 class="fs-14 mb-0 text-body"><%= @product.name %></h5>
 						</td>
 					</tr>
 					<tr>
-						<td><b>Comment</b></td>
-						<td><%= @testimonial.comment %></td>
+						<td><b>Caption</b></td>
+						<td>
+							<%= @product.name %>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Short Description</b></td>
+						<td>
+							<%= @product.short_description %>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Description</b></td>
+						<td>
+							<%= @product.description %>
+						</td>
 					</tr>
 				</table>
 				<div class="form-actions">
-					<%= link_to 'Edit', edit_admins_testimonial_path(@testimonial), :class => 'btn btn-secondary' %>
-					<%= link_to 'Destroy', admins_testimonial_path(@testimonial), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
-					<%= link_to 'View All', admins_testimonials_path, :class => 'btn btn-light' %>
+					<%= link_to 'Edit', edit_admins_product_path(@product), :class => 'btn btn-secondary' %>
+					<%= link_to 'Destroy', admins_product_path(@product), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn btn-danger' %>
+					<%= link_to 'View All', admins_products_path, :class => 'btn btn-light' %>
 				</div>
 			</div>
 		</div>

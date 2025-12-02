@@ -1,21 +1,24 @@
-<%= simple_form_for [:admins, @testimonial] do |f| %>
+<%= simple_form_for [:admins, @product] do |f| %>
 	<div class="row">
 		<div class="col-lg-8">
 			<div class="card">
 				<div class="card-body">
 					<%= f.error_notification %>
 					<fieldset>
-						<%= f.input :photo, as: :file %>
-						<%= f.input :full_name, as: :string %>
-						<%= f.input :comment, as: :text, input_html: { rows: 10 } %>
+						<%= f.input :image, as: :file, input_html: { class: "mb-3", accept: "image/gif, image/png, image/jpg, image/jpeg" } %>
+						<%= f.input :banner, as: :file, input_html: { class: "mb-3", accept: "image/gif, image/png, image/jpg, image/jpeg" } %>
+						<%= f.input :name, as: :string %>
+						<%= f.input :caption, as: :string %>
+						<%= f.input :short_description, as: :text %>
+						<%= f.input :description, as: :text %>
 					</fieldset>
 					<%= f.error :base %>
 					<div class="form-actions">
 						<%= f.button :submit, :class => 'btn btn-secondary' %>
-						<% unless @testimonial.new_record? %>
-							<%= link_to "Cancel", admins_testimonial_path(@testimonial), :class => 'btn btn-light' %>
+						<% unless @product.new_record? %>
+							<%= link_to "Cancel", admins_product_path(@product), :class => 'btn btn-light' %>
 						<% else %>
-							<%= link_to "Cancel", admins_testimonials_path, :class => 'btn btn-light' %>
+							<%= link_to "Cancel", admins_products_path, :class => 'btn btn-light' %>
 						<% end %>
 					</div>
 				</div>
@@ -23,7 +26,7 @@
 		</div>
 		<div class="col-lg-4">
 			<div class="row">
-				<%= render "admins/shared/error_messages", :target => @testimonial, col: 'col-lg-12' %>
+				<%= render "admins/shared/error_messages", :target => @product, col: 'col-lg-12' %>
 			</div>
 		</div>
 	</div>
