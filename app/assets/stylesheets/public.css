@@ -355,3 +355,75 @@
     margin-top: 0.5rem;
   }
 }
+
+/* Event List Page */
+.event-list-section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.event-group-title {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: var(--mill-dark);
+  margin-top: 0;
+}
+
+.event-date {
+  font-size: 0.85rem;
+  color: var(--mill-medium-gray);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.event-list-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.5rem;
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  color: var(--mill-dark);
+  text-decoration: none;
+  display: block;
+}
+
+.event-list-title:hover {
+  color: var(--mill-text-gray);
+  text-decoration: none;
+}
+
+.event-read-more {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  text-decoration: underline;
+  letter-spacing: 1px;
+  color: var(--mill-medium-gray);
+}
+
+.event-read-more:hover {
+  color: var(--mill-dark);
+}
+
+.event-image-container {
+  margin-bottom: 2rem;
+}
+
+.event-image {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+/* Responsive adjustments for events */
+@media (max-width: 768px) {
+  .event-list-title {
+    font-size: 2rem;
+  }
+
+  .event-group-title {
+    margin-bottom: 1rem;
+  }
+}

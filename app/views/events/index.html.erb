@@ -1,41 +1,63 @@
-<%= render "banner" %>
-<section class="wow animate__fadeIn">
-    <div class="container mb-4">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto text-center">
-                <h5 class="alt-font text-extra-dark-gray mb-2"><%= t('events.caption') %></h5>
-                <h3 class="alt-font text-extra-dark-gray font-weight-400"><%= t('events.title') %></h3>
-                <p class="w-100 mx-auto d-inline-block sm-w-100"><%= t('events.desc') %></p>
-            </div>
-        </div>
-    </div>
+<%
+  current_time = Time.current
+  upcoming_events = @events.select { |e| e.published_date && e.published_date >= current_time }
+  past_events = @events.select { |e| e.published_date.nil? || e.published_date < current_time }.reverse
+%>
+
+<%= content_for :head do %>
+    <%= stylesheet_link_tag "public.css" %>
+<% end %>
+
+<section class="big-section event-list-section wow animate__fadeIn">
     <div class="container">
-      <div class="row justify-content-center">
-          <% @events.each_with_index do |event, index| %>
-            <!-- start services item -->
-            <div class="col-12 <%= 'col-md-6' if index > 0 %> margin-40px-bottom sm-margin-20px-bottom wow animate__fadeInUp">
-                <div class="margin-20px-bottom overflow-hidden image-hover-style-1">
-                  <a href="<%= event_path(event) %>">
-                    <% if index == 0 %>
-                      <%= image_tag url_for(event.image.variant(resize_to_fill: [1024, 450])), class: "w-100" %>
-                    <% else %>
-                      <%= image_tag url_for(event.image), class: "w-100" %>
-                    <% end %>
-                  </a>
+        <!-- Upcoming Events -->
+        <% if upcoming_events.any? %>
+            <% upcoming_events.each_with_index do |event, index| %>
+                <div class="row mb-5 align-items-center wow animate__fadeInUp">
+                    <!-- Left: Title (Sticky-like behavior visually) -->
+                    <div class="col-12 col-md-3 align-self-start">
+                        <% if index == 0 %>
+                            <h3 class="event-group-title mt-2">Upcoming Events</h3>
+                        <% end %>
+                    </div>
+                    <!-- Center: Image -->
+                    <div class="col-12 col-md-5 event-image-container mb-md-0">
+                        <% if event.image.attached? %>
+                            <%= image_tag event.image, class: "event-image" %>
+                        <% end %>
+                    </div>
+                    <!-- Right: Content -->
+                    <div class="col-12 col-md-4 ps-md-5">
+                       <span class="event-date d-block"><%= event.published_date.strftime("%B %d, %Y") if event.published_date %></span>
+                       <a href="<%= event_path(event) %>" class="event-list-title text-large text-script d-block"><%= event.title %></a>
+                       <a href="<%= event_path(event) %>" class="event-read-more text-decoration-underline">Read More</a>
+                    </div>
                 </div>
-                <div>
-                  <a href="<%= event_path(event) %>" class="alt-font margin-10px-bottom d-block text-extra-large text-extra-dark-gray font-weight-600"><%= event.title %></a>
-                  <p><%= event.short_description %></p>
+            <% end %>
+            <div class="mb-5"></div>
+        <% end %>
+
+        <!-- Past Events -->
+        <% if past_events.any? %>
+            <% past_events.each_with_index do |event, index| %>
+                <div class="row mb-5 align-items-center wow animate__fadeInUp">
+                    <div class="col-12 col-md-3 align-self-start">
+                        <% if index == 0 %>
+                            <h3 class="event-group-title mt-2">Past Events</h3>
+                        <% end %>
+                    </div>
+                    <div class="col-12 col-md-5 event-image-container mb-md-0">
+                        <% if event.image.attached? %>
+                            <%= image_tag event.image, class: "event-image" %>
+                        <% end %>
+                    </div>
+                    <div class="col-12 col-md-4 ps-md-5">
+                       <span class="event-date d-block"><%= event.published_date.strftime("%B %d, %Y") if event.published_date %></span>
+                       <a href="<%= event_path(event) %>" class="event-list-title text-large text-script d-block"><%= event.title %></a>
+                       <a href="<%= event_path(event) %>" class="event-read-more text-decoration-underline">Read More</a>
+                    </div>
                 </div>
-                <div>
-                  <a href="<%= event_path(event) %>" class="text-uppercase alt-font text-extra-dark-gray font-weight-400 text-medium w-100">Read More <i class="ti-arrow-right margin-5px-left text-black text-medium position-relative top-2" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            <!-- end services item -->
-          <% end %>
-      </div>
-      <div class="text-center margin-five-top wow animate__fadeInUp">
-        <%= paginate @events, theme: :pofo %>
-      </div>
+            <% end %>
+        <% end %>
     </div>
 </section>

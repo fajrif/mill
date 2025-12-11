@@ -1,4 +1,4 @@
-<%= simple_form_for [:admins, @product] do |f| %>
+<%= simple_form_for [:admins, @product], html: { multipart: true } do |f| %>
 	<div class="row">
 		<div class="col-lg-8">
 			<div class="card">
@@ -6,6 +6,7 @@
 					<%= f.error_notification %>
 					<fieldset>
 						<%= f.input :image, as: :file, input_html: { class: "mb-3", accept: "image/gif, image/png, image/jpg, image/jpeg" } %>
+						<%= f.input :images, as: :file, input_html: { multiple: true, class: "mb-3", accept: "image/gif, image/png, image/jpg, image/jpeg" } %>
 						<%= f.input :banner, as: :file, input_html: { class: "mb-3", accept: "image/gif, image/png, image/jpg, image/jpeg" } %>
 						<%= f.input :name, as: :string %>
 						<%= f.input :caption, as: :string %>

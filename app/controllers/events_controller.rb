@@ -1,8 +1,7 @@
 class EventsController < ApplicationController
 
   def index
-		criteria = Event.all
-    @events = criteria.page(params[:page]).per(12)
+    @events = Event.all
 
     respond_to do |format|
       format.html # index.html.erb

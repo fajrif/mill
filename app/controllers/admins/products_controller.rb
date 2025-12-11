@@ -52,7 +52,7 @@ class Admins::ProductsController < Admins::BaseController
   private
 
   def params_product
-    params.require(:product).permit(:image, :banner, :name, :short_description, :description, :caption)
+    params.require(:product).permit(:image, :banner, :name, :short_description, :description, :caption, images: [])
   end
 
   def set_product

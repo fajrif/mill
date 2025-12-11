@@ -24,6 +24,16 @@
 						</td>
 					</tr>
 					<% end %>
+					<% if @product.images.attached? %>
+					<tr>
+						<td><b>Images</b></td>
+						<td>
+							<% @product.images.each do |image| %>
+								<%= image_tag image.variant(resize_to_limit: [100,100]) %><br/>
+							<% end%>
+						</td>
+					</tr>
+					<% end %>
 					<tr>
 						<td><b>Name</b></td>
 						<td>
