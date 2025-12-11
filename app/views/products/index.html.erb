@@ -1,64 +1,37 @@
-<!-- Hero Section -->
-<section class="hero-section">
-  <%= image_tag("products-hero.jpg", alt: "Mill Aluminium Products") %>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <p class="lead mb-0">Our products are designed to <span class="text-script">adapt</span> to the</p>
-    <p class="lead mb-0">many ways people live. Each collection</p>
-    <p class="lead mb-0">offers its own character. Together, they</p>
-    <p class="lead">create <span class="text-script">possibilities</span> for spaces that feel</p>
-    <p class="lead"><span class="text-script">seamless and alive</span></p>
-  </div>
-</section>
-
-<!-- Products Title -->
-<section class="section-padding-sm">
+<%= render "banner" %>
+<section>
   <div class="container">
     <div class="row">
-      <div class="col-12 text-center">
-        <h2 style="font-size: 2rem; font-weight: 400; text-transform: uppercase; letter-spacing: 1px;">OUR PRODUCTS</h2>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Products Grid -->
-<section class="section-padding">
-  <div class="container">
-    <div class="row g-4">
-      <% @products.each do |product| %>
-        <div class="col-md-6">
-          <%= link_to product_path(product), class: "text-decoration-none" do %>
-            <div class="grid-item">
-              <%= image_tag(url_for(product.image), alt: product.name) %>
-              <div class="grid-item-overlay">
-                <h4 class="grid-item-title"><%= product.name %></h4>
-              </div>
-            </div>
+      <div class="col-12 filter-content overflow-hidden">
+        <ul class="hover-option2 portfolio-wrapper grid grid-loading grid-2col xl-grid-2col lg-grid-2col md-grid-2col sm-grid-2col xs-grid-1col gutter-medium">
+          <li class="grid-sizer"></li>
+          <% @products.each do |product| %>
+            <!-- start  portfolio item -->
+            <li class="grid-item web branding design wow animate__fadeInUp last-paragraph-no-margin">
+              <a href="<%= product_path(product) %>">
+                <figure>
+                  <div class="portfolio-img bg-deep-pink">
+                    <%= image_tag(url_for(product.image), alt: product.name) %>
+                  </div>
+                  <figcaption>
+                    <div class="portfolio-hover-main text-start">
+                      <div class="portfolio-hover-box align-bottom">
+                        <div class="portfolio-hover-content position-relative last-paragraph-no-margin">
+                          <div class="bg-teal margin-25px-bottom separator-line-horrizontal-medium-light2"></div>
+                          <span class="line-height-normal alt-font text-white-2 text-uppercase text-uppercase margin-one-half-bottom d-block font-weight-600"><%= product.name %></span>
+                          <p class="text-white-2 text-uppercase text-extra-small"><%= product.caption %></p>
+                        </div>
+                      </div>
+                    </div>
+                  </figcaption>
+                </figure>
+              </a>
+            </li>
+            <!-- end portfolio item -->
           <% end %>
-        </div>
-      <% end %>
-    </div>
-
-    <% if @products.total_pages > 1 %>
-      <div class="text-center mt-5">
-        <%= paginate @products %>
-      </div>
-    <% end %>
-  </div>
-</section>
-
-<!-- Contact Form Section -->
-<section class="contact-form-section">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <h2 class="text-center mb-4">
-          <span class="text-uppercase">TELL US WHAT</span><br>
-          <span class="text-script">you need</span>
-        </h2>
-        <%= render "shared/contact_form" %>
+        </ul>
       </div>
     </div>
   </div>
 </section>
+

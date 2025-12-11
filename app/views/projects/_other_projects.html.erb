@@ -1,27 +1,23 @@
-<section class="pt-0 wow animate__fadeIn">
+<section class="wow animate__fadeIn">
     <div class="container margin-40px-bottom sm-margin-20px-bottom">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto text-center">
-                <h3 class="alt-font text-extra-dark-gray font-weight-400">Other Project</h3>
+                <h4 class="alt-font text-uppercase font-weight-400">Other Projects</h4>
             </div>
         </div>
     </div>
     <div class="container">
       <div class="row justify-content-center">
-          <% @projects.each_with_index do |project| %>
+          <% @projects.each_with_index do |project, index| %>
             <!-- start services item -->
-            <div class="col-12 col-md-6 margin-40px-bottom sm-margin-20px-bottom wow animate__fadeInUp">
+            <div class="col-12 col-md-4 margin-40px-bottom sm-margin-20px-bottom wow animate__fadeInUp">
                 <div class="margin-20px-bottom overflow-hidden image-hover-style-1">
                   <a href="<%= project_path(project) %>">
-                    <%= image_tag url_for(project.image), class: "w-100" %>
+                    <%= image_tag url_for(project.image.variant(resize_to_fill: [360, 380])), class: "w-100" %>
                   </a>
                 </div>
                 <div>
-                  <a href="<%= project_path(project) %>" class="alt-font margin-10px-bottom d-block text-extra-large text-extra-dark-gray font-weight-600"><%= project.title %></a>
-                  <p><%= project.short_description %></p>
-                </div>
-                <div>
-                  <a href="<%= project_path(project) %>" class="text-uppercase alt-font text-extra-dark-gray font-weight-400 text-medium w-100">Read More <i class="ti-arrow-right margin-5px-left text-black text-medium position-relative top-2" aria-hidden="true"></i></a>
+                  <a href="<%= project_path(project) %>" class="alt-font d-block text-extra-large text-uppercase font-weight-400"><%= project.name %></a>
                 </div>
             </div>
             <!-- end services item -->

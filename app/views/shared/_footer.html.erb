@@ -1,86 +1,78 @@
-<!-- Footer -->
-<footer class="mill-footer">
-  <div class="container">
-    <div class="row">
-      <!-- Logo Column -->
-      <div class="col-12 col-md-3 mb-4 mb-md-0">
-        <%= link_to root_path, class: "d-block" do %>
-          <%= image_tag("logo-white.png", alt: "MiLL ALUMINIUM", class: "footer-logo") %>
-        <% end %>
-      </div>
-
-      <!-- Navigation Column 1 -->
-      <div class="col-6 col-md-2 mb-4 mb-md-0">
-        <ul>
-          <li><%= link_to "HOME", root_path %></li>
-          <li><%= link_to "ABOUT", about_path %></li>
-          <li><%= link_to "PRODUCTS", products_path %></li>
-          <li><%= link_to "PROJECTS", projects_path %></li>
-        </ul>
-      </div>
-
-      <!-- Navigation Column 2 -->
-      <div class="col-6 col-md-2 mb-4 mb-md-0">
-        <ul>
-          <li><%= link_to "ARTICLES", articles_path %></li>
-          <li><%= link_to "EVENTS", events_path %></li>
-          <li><%= link_to "CONTACT US", contact_path %></li>
-        </ul>
-      </div>
-
-      <!-- Office Address Column -->
-      <div class="col-12 col-md-2 mb-4 mb-md-0">
-        <h6>OUR OFFICE</h6>
-        <p class="mb-0">
-          <%= raw configatron.company_address %>
-        </p>
-      </div>
-
-      <!-- Contact Column -->
-      <div class="col-12 col-md-3">
-        <h6>CONTACT US</h6>
-        <p class="mb-2">
-          <%= link_to configatron.company_phone, "tel:#{configatron.company_phone}" %>
-        </p>
-        <p class="mb-3">
-          <%= link_to configatron.company_email, "mailto:#{configatron.company_email}" %>
-        </p>
-        <div class="mb-3">
-          <strong>FOLLOW US</strong>
+<%= render "contacts/contact_form" unless is_contact_page? %>
+<!-- start footer -->
+<footer class="footer-standard bg-black text-white-2">
+    <div class="footer-widget-area padding-three-tb sm-padding-30px-tb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-5 widget md-margin-30px-bottom text-center text-sm-start">
+                    <!-- start logo -->
+                    <%= link_to root_path, class: "margin-20px-bottom d-inline-block" do %>
+                      <%= image_tag('logo.png', class: "footer-logo") %>
+                    <% end %>
+                    <!-- end logo -->
+                    <p class="d-inline-block w-70 lg-w-70 sm-w-95 xs-w-95">Mill aims to create a better alumunium, sophisticated environment where all can experience advanced level of design.</p>
+                </div>
+                <div class="col-12 col-md-7">
+                  <div class="row">
+                    <!-- start additional links -->
+                    <div class="col-6 col-md-3 widget d-none d-md-block padding-45px-left md-padding-15px-left md-margin-30px-bottom link-style-2 footer-menu">
+                      <ul class="text-large text-uppercase list-unstyled">
+                        <li><a class="text-white-2" href="<%= root_url %>">Home</a></li>
+                        <li><a class="text-white-2" href="<%= about_url %>">About</a></li>
+                        <li><a class="text-white-2" href="<%= products_url %>">Products</a></li>
+                        <li><a class="text-white-2" href="<%= projects_url %>">Projects</a></li>
+                      </ul>
+                    </div>
+                    <!-- end additional links -->
+                    <!-- start additional links -->
+                    <div class="col-6 col-md-3 widget d-none d-md-block padding-45px-left md-padding-15px-left md-margin-30px-bottom link-style-2 footer-menu">
+                      <ul class="text-large text-uppercase list-unstyled">
+                        <li><a class="text-white-2" href="<%= articles_url %>">Articles</a></li>
+                        <li><a class="text-white-2" href="<%= events_url %>">Events</a></li>
+                        <li><a class="text-white-2" href="<%= contact_url %>">Contact Us</a></li>
+                      </ul>
+                    </div>
+                    <!-- end additional links -->
+                    <!-- start contact information -->
+                    <div class="col-12 col-md-3 widget text-center text-md-start padding-45px-left md-padding-15px-left xs-margin-30px-bottom link-style-2">
+                      <div class="widget-title alt-font text-white-2 text-uppercase margin-20px-bottom font-weight-600">Our Office</div>
+                      <p class="text-medium d-inline-block d-md-block margin-25px-bottom" style="line-height:1.3"><%= raw configatron.company_address %></p>
+                    </div>
+                    <!-- end contact information -->
+                    <!-- start contact information -->
+                    <div class="col-12 col-md-3 widget text-center text-md-start padding-45px-left md-padding-15px-left xs-margin-30px-bottom link-style-2">
+                      <div class="widget-title alt-font text-white-2 text-uppercase margin-20px-bottom font-weight-600">Contact Us</div>
+                      <div class="margin-10px-bottom"><%= link_to configatron.company_phone, "tel:#{configatron.company_phone}", class: "text-white-2" %></div>
+                      <div class="margin-20px-bottom"><a href="mailto:<%= configatron.company_email %>" class="text-white-2"><%= configatron.company_email %></a></div>
+                      <!-- start social media -->
+                      <div class="social-icon-style-8 d-inline-block align-middle">
+                        <ul class="medium-icon mb-0">
+                          <li><a href="<%= configatron.social_instagram_url %>" target="_blank" class="text-white-2 hover-style-instagram margin-one-lr"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+                          <li><a href="<%= configatron.social_facebook_url %>" target="_blank" class="text-white-2 hover-style-facebook margin-one-lr"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>
+                          <li><a href="<%= configatron.social_youtube_url %>" target="_blank" class="text-white-2 hover-style-youtube margin-one-lr"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></li>
+                        </ul>
+                      </div>
+                      <!-- end social media -->
+                    </div>
+                    <!-- end contact information -->
+                  </div>
+                </div>
+            </div>
         </div>
-        <div class="social-icons">
-          <a href="<%= configatron.social_instagram_url %>" target="_blank" aria-label="Instagram">
-            <i class="fa-brands fa-instagram"></i>
-          </a>
-          <a href="<%= configatron.social_facebook_url %>" target="_blank" aria-label="Facebook">
-            <i class="fa-brands fa-facebook-f"></i>
-          </a>
-          <a href="<%= configatron.social_youtube_url %>" target="_blank" aria-label="YouTube">
-            <i class="fa-brands fa-youtube"></i>
-          </a>
-        </div>
-      </div>
     </div>
-
-    <!-- Footer Bottom -->
-    <div class="footer-bottom">
-      <div class="row align-items-center">
-        <div class="col-md-6 mb-3 mb-md-0">
-          <p class="text-center text-md-start">
-            <%= link_to "Privacy Policy", "#" %> &nbsp;&nbsp;
-            <%= link_to "Terms & Condition", "#" %>
-          </p>
+    <div class="bg-black padding-15px-tb sm-padding-15px-tb">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-2">
+                <!-- start copyright -->
+                <div class="col text-md-start text-medium text-center">
+                  <%= link_to "Privacy Policy", "#", class: "text-white-2" %>&nbsp;&nbsp;
+                  <%= link_to "Terms & Condition", "#", class: "text-white-2" %>
+                </div>
+                <div class="col text-medium text-md-end text-center">&copy;2025 - Mill Aluminium. All right reserved</div>
+                <!-- end copyright -->
+            </div>
         </div>
-        <div class="col-md-6 text-center text-md-end">
-          <p>BRING THE OUTDOORS INDOORS</p>
-        </div>
-      </div>
-      <div class="row mt-2">
-        <div class="col-12 text-center text-md-end">
-          <p>&copy;2025 - Milla Aluminium. All right reserved</p>
-        </div>
-      </div>
     </div>
-  </div>
 </footer>
+<!-- end footer -->
 

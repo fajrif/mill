@@ -1,8 +1,8 @@
-<section class="pt-0 wow animate__fadeIn fadeInUp">
+<section class="wow animate__fadeIn">
     <div class="container margin-40px-bottom sm-margin-20px-bottom">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto text-center">
-                <h3 class="alt-font text-extra-dark-gray font-weight-400">Our Articles</h3>
+                <h3 class="alt-font text-uppercase font-weight-400">Our Articles</h3>
             </div>
         </div>
     </div>
@@ -15,18 +15,18 @@
             </div>
             <div class="col-md-6 text-center text-md-start padding-eight-lr lg-padding-six-lr md-padding-15px-lr wow animate__fadeInRight" data-wow-delay="0.2s">
               <span class="text-uppercase margin-10px-bottom d-inline-block text-medium"><%= article.try(:category).try(:name) %></span>
-              <h5 class="alt-font text-extra-dark-gray font-weight-500"><%= article.title %></h5>
+              <h5 class="alt-font text-uppercase font-weight-500"><%= article.title %></h5>
               <p><%= article.short_description %></p>
-              <a href="<%= article_path(article) %>" class="text-uppercase alt-font text-extra-dark-gray font-weight-400 text-medium w-100">Read More <i class="ti-arrow-right margin-5px-left text-black text-medium position-relative top-2" aria-hidden="true"></i></a>
+              <a href="<%= article_path(article) %>" class="text-uppercase alt-font text-uppercase font-weight-400 text-medium w-100">Read More <i class="ti-arrow-right margin-5px-left text-black text-medium position-relative top-2" aria-hidden="true"></i></a>
             </div>
           </div>
         <% else %>
           <div class="row align-items-center">
             <div class="col-md-6 text-center text-md-start padding-eight-lr lg-padding-six-lr md-padding-15px-lr order-2 order-md-1 sm-margin-20px-bottom wow animate__fadeInLeft">
               <span class="text-uppercase margin-10px-bottom d-inline-block text-medium"><%= article.try(:category).try(:name) %></span>
-              <h5 class="alt-font text-extra-dark-gray font-weight-500"><%= article.title %></h5>
+              <h5 class="alt-font text-uppercase font-weight-500"><%= article.title %></h5>
               <p><%= article.short_description %></p>
-              <a href="<%= article_path(article) %>" class="text-uppercase alt-font text-extra-dark-gray font-weight-400 text-medium w-100">Read More <i class="ti-arrow-right margin-5px-left text-black text-medium position-relative top-2" aria-hidden="true"></i></a>
+              <a href="<%= article_path(article) %>" class="text-uppercase alt-font text-uppercase font-weight-400 text-medium w-100">Read More <i class="ti-arrow-right margin-5px-left text-black text-medium position-relative top-2" aria-hidden="true"></i></a>
             </div>
             <div class="col-md-6 text-center md-margin-30px-bottom order-1 order-md-2 wow animate__fadeInRight" data-wow-delay="0.2s">
               <%= image_tag url_for(article.image), class: "border-radius-6 w-100" %>
@@ -35,7 +35,7 @@
         <% end %>
       <% end %>
       <div class="text-center margin-five-top wow animate__fadeInUp">
-        <a class="btn btn-large btn-transparent-black text-uppercase" href="<%= articles_path %>">See More</a>
+        <a class="text-uppercase text-decoration-underline" href="<%= articles_path %>">See More</a>
       </div>
     </div>
 </section>

@@ -1,4 +1,21 @@
-<%= render "banner" %>
-<%= render "contact_form" %>
+<!-- Contact Form Section -->
+<section class="big-section contact-form-section bg-light">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-12 col-lg-7 last-paragraph-no-margin">
+        <h2 class="text-md-start text-center margin-50px-bottom sm-margin-25px-bottom">
+          <span class="text-uppercase d-block font-weight-600">TELL US WHAT</span>
+          <span class="text-script d-block text-center">you need</span>
+        </h2>
+        <div class="w-90 sm-w-100">
+          <p class="font-weight-600 text-large">Got a specific project in mind or need professional recommendations? Our team is ready to listen and provide solutions that match your goals.</p>
+          <p>Share your requirements with us, and together we’ll find the aluminium solution that perfectly fits your design and functionality needs.</p>
+        </div>
+      </div>
+      <div id="contactForm" class="col-12 col-lg-5">
+        <%= render "contacts/form" %>
+      </div>
+    </div>
+  </div>
+</section>
 <%= render "image_separator" %>
-<%= render "faqs" %>

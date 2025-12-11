@@ -1,37 +1,16 @@
-<section class="wow animate__fadeIn fadeInUp">
-    <div class="container margin-40px-bottom sm-margin-20px-bottom">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto text-center">
-                <h5 class="alt-font text-extra-dark-gray mb-2"><%= t('contacts.caption') %></h5>
-                <h3 class="alt-font text-extra-dark-gray font-weight-400"><%= t('contacts.title') %></h3>
-                <p class="w-100 mx-auto d-inline-block sm-w-100"><%= t('contacts.desc') %></p>
-            </div>
-        </div>
+<!-- Contact Form Section -->
+<section class="contact-form-section bg-light">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-12 col-lg-7">
+        <h2 class="text-md-start text-center mb-0">
+          <span class="text-uppercase d-block font-weight-600">TELL US WHAT</span>
+          <span class="text-script d-block text-center">you need</span>
+        </h2>
+      </div>
+      <div id="contactForm" class="col-12 col-lg-5">
+        <%= render "contacts/form" %>
+      </div>
     </div>
-    <div class="container">
-        <div class="row align-items-start">
-            <div class="col-lg-4 col-md-6 text-center md-margin-30px-bottom wow animate__fadeInLeft">
-                <%= image_tag('about-woman.png') %>
-            </div>
-            <div class="col-lg-8 col-md-6 padding-five-lr lg-padding-five-lr sm-padding-15px-lr wow animate__fadeInRight" data-wow-delay="0.2s">
-              <div class="row">
-                <div class="col-6 last-paragraph-no-margin margin-50px-bottom sm-margin-25px-bottom">
-                  <%= image_tag('logo-icon.png', class: "mb-2 w-40px") %>
-                  <p class="text-medium d-inline-block d-md-block margin-25px-bottom"><%= raw configatron.company_address %></p>
-                </div>
-                <div class="col-6 last-paragraph-no-margin margin-50px-bottom sm-margin-25px-bottom">
-                  <%= image_tag('logo-icon.png', class: "mb-2 w-40px") %>
-                  <div class="margin-10px-bottom">T: <%= link_to configatron.company_phone, "tel:#{configatron.company_phone}" %></div>
-                  <div class="margin-10px-bottom">T: <%= link_to configatron.company_phone1, "tel:#{configatron.company_phone1}" %></div>
-                  <div class="margin-20px-bottom">E: <a href="mailto:<%= configatron.company_email %>" class="text-deep-pink-hover"><%= configatron.company_email %></a></div>
-                </div>
-              </div>
-              <div class="row">
-                <div id="contactForm" class="col-12 col-lg-12">
-                  <%= render "form" %>
-                </div>
-              </div>
-            </div>
-        </div>
-    </div>
+  </div>
 </section>

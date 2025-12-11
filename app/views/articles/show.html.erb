@@ -1,14 +1,13 @@
-<%= render "shared/small_banner" %>
-<section class="pb-5 wow animate__fadeIn fadeInUp">
+<section class="big-section pb-5 wow animate__fadeIn fadeInUp">
     <div class="container mb-4">
         <div class="row">
             <div class="col-12 col-lg-9 col-md-10 mx-auto text-center">
-              <h3 class="alt-font text-extra-dark-gray font-weight-400 margin-40px-bottom sm-margin-20px-bottom"><%= @article.title %></h3>
-              <p class="w-90 mx-auto d-inline-block sm-w-100"><%= @article.short_description %></p>
+              <span class="w-90 mx-auto d-inline-block sm-w-100"><%= @article.published_date_label('%B %m, %Y') %></span>
+              <h3 class="alt-font text-script font-weight-400"><%= @article.title %></h3>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row justify-content-center">
           <div class="col-12 margin-40px-bottom sm-margin-20px-bottom wow animate__fadeInUp">
               <div class="margin-20px-bottom overflow-hidden">

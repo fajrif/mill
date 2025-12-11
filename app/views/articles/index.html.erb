@@ -1,40 +1,23 @@
-<%= render "banner" %>
-<section class="wow animate__fadeIn">
-    <div class="container mb-4">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto text-center">
-                <h5 class="alt-font text-extra-dark-gray mb-2"><%= t('articles.caption') %></h5>
-                <h3 class="alt-font text-extra-dark-gray font-weight-400"><%= t('articles.title') %></h3>
-                <p class="w-100 mx-auto d-inline-block sm-w-100"><%= t('articles.desc') %></p>
-            </div>
-        </div>
-    </div>
+<section class="big-section pb-0 wow animate__fadeIn">
     <div class="container">
       <div class="row justify-content-center">
           <% @articles.each_with_index do |article, index| %>
             <!-- start services item -->
-            <div class="col-12 <%= 'col-md-6' if index > 0 %> margin-40px-bottom sm-margin-20px-bottom wow animate__fadeInUp">
+            <div class="col-12 col-md-4 margin-40px-bottom sm-margin-20px-bottom wow animate__fadeInUp">
                 <div class="margin-20px-bottom overflow-hidden image-hover-style-1">
                   <a href="<%= article_path(article) %>">
-                    <% if index == 0 %>
-                      <%= image_tag url_for(article.image.variant(resize_to_fill: [1024, 450])), class: "w-100" %>
-                    <% else %>
-                      <%= image_tag url_for(article.image), class: "w-100" %>
-                    <% end %>
+                    <%= image_tag url_for(article.image.variant(resize_to_fill: [360, 380])), class: "w-100" %>
                   </a>
                 </div>
                 <div>
-                  <a href="<%= article_path(article) %>" class="alt-font margin-10px-bottom d-block text-extra-large text-extra-dark-gray font-weight-600"><%= article.title %></a>
+                  <a href="<%= article_path(article) %>" class="alt-font margin-10px-bottom d-block text-extra-large text-extra-dark-gray font-weight-400"><%= article.title %></a>
                   <p><%= article.short_description %></p>
-                </div>
-                <div>
-                  <a href="<%= article_path(article) %>" class="text-uppercase alt-font text-extra-dark-gray font-weight-400 text-medium w-100">Read More <i class="ti-arrow-right margin-5px-left text-black text-medium position-relative top-2" aria-hidden="true"></i></a>
                 </div>
             </div>
             <!-- end services item -->
           <% end %>
       </div>
-      <div class="text-center margin-five-top wow animate__fadeInUp">
+      <div class="text-center margin-five-bottom wow animate__fadeInUp">
         <%= paginate @articles, theme: :pofo %>
       </div>
     </div>

@@ -22,9 +22,8 @@ module PublishedExtension
 		self.published? ? "Published" : "Draft"
 	end
 
-	def published_date_label(use_time=true)
-		_format = use_time ? '%d/%m/%Y %H:%M' : '%d/%m/%Y'
-		self.try(:published_date).try(:strftime, _format)
+	def published_date_label(format='%d/%m/%Y %H:%M')
+		self.try(:published_date).try(:strftime, format)
 	end
 
 end

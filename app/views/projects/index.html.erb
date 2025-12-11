@@ -1,41 +1,37 @@
 <%= render "banner" %>
-<section class="wow animate__fadeIn">
-    <div class="container mb-4">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto text-center">
-                <h5 class="alt-font text-extra-dark-gray mb-2"><%= t('projects.caption') %></h5>
-                <h3 class="alt-font text-extra-dark-gray font-weight-400"><%= t('projects.title') %></h3>
-                <p class="w-100 mx-auto d-inline-block sm-w-100"><%= t('projects.desc') %></p>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-      <div class="row justify-content-center">
-          <% @projects.each_with_index do |project, index| %>
-            <!-- start services item -->
-            <div class="col-12 <%= 'col-md-6' if index > 0 %> margin-40px-bottom sm-margin-20px-bottom wow animate__fadeInUp">
-                <div class="margin-20px-bottom overflow-hidden image-hover-style-1">
-                  <a href="<%= project_path(project) %>">
-                    <% if index == 0 %>
-                      <%= image_tag url_for(project.image.variant(resize_to_fill: [1024, 450])), class: "w-100" %>
-                    <% else %>
-                      <%= image_tag url_for(project.image), class: "w-100" %>
-                    <% end %>
-                  </a>
-                </div>
-                <div>
-                  <a href="<%= project_path(project) %>" class="alt-font margin-10px-bottom d-block text-extra-large text-extra-dark-gray font-weight-600"><%= project.name %></a>
-                  <p><%= project.short_description %></p>
-                </div>
-                <div>
-                  <a href="<%= project_path(project) %>" class="text-uppercase alt-font text-extra-dark-gray font-weight-400 text-medium w-100">Read More <i class="ti-arrow-right margin-5px-left text-black text-medium position-relative top-2" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            <!-- end services item -->
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 filter-content overflow-hidden">
+        <ul class="hover-option2 portfolio-wrapper grid grid-loading grid-2col xl-grid-2col lg-grid-2col md-grid-2col sm-grid-2col xs-grid-1col gutter-medium">
+          <li class="grid-sizer"></li>
+          <% @projects.each do |project| %>
+            <!-- start  portfolio item -->
+            <li class="grid-item web branding design wow animate__fadeInUp last-paragraph-no-margin">
+              <a href="<%= project_path(project) %>">
+                <figure>
+                  <div class="portfolio-img bg-deep-pink">
+                    <%= image_tag(url_for(project.image), alt: project.name) %>
+                  </div>
+                  <figcaption>
+                    <div class="portfolio-hover-main text-start">
+                      <div class="portfolio-hover-box align-bottom">
+                        <div class="portfolio-hover-content position-relative last-paragraph-no-margin">
+                          <div class="bg-teal margin-25px-bottom separator-line-horrizontal-medium-light2"></div>
+                          <span class="line-height-normal alt-font text-white-2 text-uppercase text-uppercase margin-one-half-bottom d-block font-weight-600"><%= project.name %></span>
+                          <p class="text-white-2 text-uppercase text-extra-small"><%= project.caption %></p>
+                        </div>
+                      </div>
+                    </div>
+                  </figcaption>
+                </figure>
+              </a>
+            </li>
+            <!-- end portfolio item -->
           <% end %>
-      </div>
-      <div class="text-center margin-five-top wow animate__fadeInUp">
-        <%= paginate @projects, theme: :pofo %>
+        </ul>
       </div>
     </div>
+  </div>
 </section>
+

@@ -2,9 +2,8 @@
 <%= simple_form_for @contact || Contact.new, url: contact_path, method: :post, remote: true do |f| %>
   <div class="row">
     <div class="col-12">
-      <%= f.input :name, label: false, placeholder: "First Name & Last Name", input_html: { class: "input-border-bottom" } %>
+      <%= f.input :name, label: false, placeholder: "Name", input_html: { class: "input-border-bottom" } %>
       <%= f.input :email, label: false, placeholder: "Email", input_html: { class: "input-border-bottom" } %>
-      <%= f.input :phone, label: false, placeholder: "Phone", input_html: { class: "input-border-bottom" } %>
       <%= f.input :message, label: false, placeholder: "Message", input_html: { class: "input-border-bottom" } %>
     </div>
     <div class="col-12">
