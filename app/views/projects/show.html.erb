@@ -1,27 +1,69 @@
-<section class="big-section pb-5 wow animate__fadeIn fadeInUp">
-    <div class="container mb-4">
-        <div class="row">
-            <div class="col-12 col-lg-9 col-md-10 mx-auto text-center">
-              <span class="w-90 mx-auto d-inline-block sm-w-100"><%= @project.caption %></span>
-              <h3 class="alt-font text-script font-weight-400"><%= @project.name %></h3>
+<%= content_for :head do %>
+    <%= stylesheet_link_tag "public.css" %>
+<% end %>
+<section class="big-section pb-5 project-header-section wow animate__fadeIn">
+    <div class="container mb-5">
+        <div class="row align-items-center">
+            <!-- Left: Created Date -->
+            <div class="col-12 col-md-3 text-start mb-3 mb-md-0">
+                <span class="project-meta-text d-block"><%= @project.created_at.strftime("%B %d, %Y") %></span>
+            </div>
+
+            <!-- Center: Project Name -->
+            <div class="col-12 col-md-6 text-center mb-3 mb-md-0">
+                <h1 class="project-title"><%= @project.name %></h1>
+            </div>
+
+            <!-- Right: Client Name -->
+            <div class="col-12 col-md-3 text-end">
+                <span class="project-meta-text d-block"><%= @project.client_name %></span>
             </div>
         </div>
     </div>
-    <div class="container-fluid">
-      <div class="row justify-content-center">
-          <div class="col-12 margin-40px-bottom sm-margin-20px-bottom wow animate__fadeInUp">
-              <div class="margin-20px-bottom overflow-hidden">
-                  <%= image_tag url_for(@project.image.variant(resize_to_fill: [1024, 450])), class: "w-100" %>
-              </div>
-          </div>
-      </div>
+
+    <!-- Hero Image -->
+    <div class="container-fluid px-0 margin-50px-bottom sm-margin-10px-bottom wow animate__fadeIn">
+        <% if @project.image.attached? %>
+            <%= image_tag @project.image, class: "project-hero-image" %>
+        <% end %>
     </div>
+
+    <!-- Content & Gallery -->
     <div class="container">
-        <div class="row">
-            <div class="col-12 col-lg-9 col-md-10 mx-auto line-height-28 last-paragraph-no-margin wow animate__fadeInUp">
-              <%= raw @project.description %>
+        <!-- Short Description -->
+        <div class="row mb-5">
+            <!-- Left: Images index 0 -->
+            <div class="col-12 col-lg-4 mx-auto order-lg-1 order-2 wow animate__fadeInLeft">
+                <%= image_tag @project.images[0], class: "project-gallery-image" if @project.images.attached? && @project.images[0] %>
+            </div>
+            <!-- Right: Description -->
+            <div class="col-12 col-lg-8 padding-ten-all sm-padding-10px-all mx-auto order-lg-2 order-1 wow animate__fadeInRight">
+                <%= raw @project.short_description %>
             </div>
         </div>
+
+        <!-- Description -->
+        <div class="row mb-5">
+            <!-- Left: Description -->
+            <div class="col-12 col-lg-6 padding-ten-all sm-padding-10px-all mx-auto wow animate__fadeInLeft">
+                <%= raw @project.description %>
+            </div>
+            <!-- Right: Images index 1 -->
+            <div class="col-12 col-lg-6 mx-auto wow animate__fadeInRight">
+                <%= image_tag @project.images[1], class: "project-gallery-image" if @project.images.attached? && @project.images[1] %>
+            </div>
+        </div>
+
+        <!-- Gallery Grid -->
+        <% if @project.images.attached? %>
+        <div class="row project-gallery">
+            <% @project.images.each_with_index do |image, index| %>
+                <div class="col-12 <%= "col-md-4" if index > 0 %> wow animate__fadeIn" data-wow-delay="<%= index * 0.1 %>s">
+                    <%= image_tag image, class: "project-gallery-image" %>
+                </div>
+            <% end %>
+        </div>
+        <% end %>
     </div>
 </section>
 <%= render "other_projects" %>
