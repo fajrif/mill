@@ -1,95 +1,84 @@
-<!-- start tab style 05 section -->
-<section class="bg-black big-section wow animate__fadeIn">
-    <div class="container-fluid tab-style5">
-        <div class="row justify-content-center">
-            <div class="col-lg-7 text-center margin-100px-bottom sm-margin-40px-bottom">
-                <div class="position-relative overflow-hidden w-100">
-                    <span class="text-small text-outside-line-full alt-font font-weight-600 text-uppercase">Tab Style 05</span>
+<!-- start products section -->
+
+<section class="products-section wow animate__fadeIn" id="products">
+    <div class="products-container">
+        <div class="products-layout">
+            <!-- Left Column: Images -->
+            <div class="products-images-col">
+                <% Product.all.each_with_index do |product, index| %>
+                    <div class="product-image-wrapper <%= 'active' if index == 0 %>" 
+                         id="product-img-<%= product.id %>"
+                         onclick="activateProduct(this, '<%= product.id %>')">
+                        <% if product.image.attached? %>
+                            <%= image_tag product.image, alt: product.name %>
+                        <% else %>
+                            <img src="https://placehold.co/1303x620" alt="<%= product.name %>">
+                        <% end %>
+                        <a href="<%= product_path(product) %>" class="see-details-link">See details</a>
+                    </div>
+                <% end %>
+            </div>
+
+            <!-- Right Column: Content -->
+            <div class="products-content-col">
+                <div class="products-title">Our Products</div>
+                <div class="products-description">
+                    <p>Designed with precision and purpose, our aluminium solutions create seamless connections between your home and its surroundings.</p>
+                    <p>Each product delivers strength, style, and tranquility, turning walls into windows and views into the centerpiece of living.</p>
                 </div>
+                
+                <ul class="product-nav">
+                    <% Product.all.each_with_index do |product, index| %>
+                        <li class="product-nav-item">
+                            <a href="javascript:void(0);" 
+                               class="product-nav-link <%= 'active' if index == 0 %>" 
+                               id="product-link-<%= product.id %>"
+                               data-target-id="<%= product.id %>"
+                               onclick="switchProduct(this)">
+                                <%= product.name %>
+                            </a>
+                        </li>
+                    <% end %>
+                </ul>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 position-relative padding-seventeen-left padding-fifteen-right lg-padding-fourteen-left lg-padding-four-right sm-padding-15px-lr">
-                <div class="tab-box">
-                    <!-- start tab navigation -->
-                    <ul class="nav nav-tabs d-inherit">
-                        <li class="nav-item"><a class="nav-link active" href="#tab-five1" data-bs-toggle="tab">Tailoring interior</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#tab-five2" data-bs-toggle="tab">Skoda corporate</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#tab-five3" data-bs-toggle="tab">Daimler financial</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#tab-five4" data-bs-toggle="tab">Basket shopping</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#tab-five5" data-bs-toggle="tab">Beautiful women</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#tab-five6" data-bs-toggle="tab">Feather pharmacy</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#tab-five7" data-bs-toggle="tab">Sherpa identity</a></li>
-                    </ul>
-                    <!-- end tab navigation -->
-                </div>
-                <div class="tab-content">
-                    <!-- start tab content -->
-                    <div class="tab-pane med-text fade in active show" id="tab-five1">
-                        <div class="row">
-                            <div class="col-12">
-                                <a href="#"><img src="https://placehold.co/1303x620" alt=""/></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end tab content -->
-                    <!-- start tab content -->
-                    <div class="tab-pane fade in" id="tab-five2">
-                        <div class="row">
-                            <div class="col-12">
-                                <a href="#"><img src="https://placehold.co/1303x620" alt=""/></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end tab content -->
-                    <!-- start tab content -->
-                    <div class="tab-pane fade in" id="tab-five3">
-                        <div class="row">
-                            <div class="col-12">
-                                <a href="#"><img src="https://placehold.co/1303x620" alt=""/></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end tab content -->
-                    <!-- start tab content -->
-                    <div class="tab-pane fade in" id="tab-five4">
-                        <div class="row">
-                            <div class="col-12">
-                                <a href="#"><img src="https://placehold.co/1303x620" alt=""/></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end tab content -->
-                    <!-- start tab content -->
-                    <div class="tab-pane fade in" id="tab-five5">
-                        <div class="row">
-                            <div class="col-12">
-                                <a href="#"><img src="https://placehold.co/1303x620" alt=""/></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end tab content -->
-                    <!-- start tab content -->
-                    <div class="tab-pane fade in" id="tab-five6">
-                        <div class="row">
-                            <div class="col-12">
-                                <a href="#"><img src="https://placehold.co/1303x620" alt=""/></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end tab content -->
-                    <!-- start tab content -->
-                    <div class="tab-pane fade in" id="tab-five7">
-                        <div class="row">
-                            <div class="col-12">
-                                <a href="#"><img src="https://placehold.co/1303x620" alt=""/></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end tab content -->
-                </div>
-            </div>       
-        </div>                                
     </div>
 </section>
-<!-- end tab style 05 section -->
+
+<script>
+    function switchProduct(linkElement) {
+        const productId = linkElement.getAttribute('data-target-id');
+        activateProductById(productId);
+    }
+
+    function activateProduct(imageElement, productId) {
+        if (!imageElement.classList.contains('active')) {
+            activateProductById(productId);
+        }
+    }
+
+    function activateProductById(productId) {
+        // Remove active class from all links
+        document.querySelectorAll('.product-nav-link').forEach(link => {
+            link.classList.remove('active');
+        });
+        
+        // Add active class to target link
+        const targetLink = document.getElementById('product-link-' + productId);
+        if (targetLink) {
+            targetLink.classList.add('active');
+        }
+        
+        // Remove active class from all images
+        document.querySelectorAll('.product-image-wrapper').forEach(img => {
+            img.classList.remove('active');
+        });
+        
+        // Add active class to target image
+        const targetImage = document.getElementById('product-img-' + productId);
+        if (targetImage) {
+            targetImage.classList.add('active');
+        }
+    }
+</script>
+<!-- end products section -->

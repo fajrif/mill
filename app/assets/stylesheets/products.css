@@ -1,0 +1,226 @@
+/* Products Section Styles */
+.products-section {
+    background-color: #0d0d0d;
+    /* Dark background as seen in screenshot */
+    color: #fff;
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+.products-container {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Flex Layout */
+.products-layout {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    min-height: 600px;
+}
+
+/* Horizontal Accordion for Images */
+.products-images-col {
+    flex: 0 0 60%;
+    max-width: 60%;
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    /* Enable flex container for images */
+    overflow: hidden;
+}
+
+.products-content-col {
+    flex: 0 0 40%;
+    max-width: 40%;
+    padding-left: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .products-layout {
+        flex-direction: column;
+    }
+
+    .products-images-col {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 40px;
+        min-height: 400px;
+    }
+
+    .products-content-col {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-left: 0;
+    }
+}
+
+/* Image Wrapper Styles - Accordion Item */
+.product-image-wrapper {
+    position: relative;
+    /* Changed from absolute */
+    height: 100%;
+    flex: 0 0 60px;
+    /* Default collapsed width */
+    opacity: 1;
+    /* Always visible */
+    visibility: visible;
+    transform: none;
+    /* Remove scale transform */
+    transition: flex 0.5s ease-in-out;
+    /* Animate flex property */
+    overflow: hidden;
+    cursor: pointer;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    /* Separator */
+    z-index: 1;
+}
+
+.product-image-wrapper:last-child {
+    border-right: none;
+}
+
+.product-image-wrapper.active {
+    flex: 1 1 auto;
+    /* Expand to fill space */
+    z-index: 10;
+}
+
+.product-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease-in-out;
+    min-width: 600px;
+    /* Prevent image squashing when container shrinks */
+}
+
+/* Closed State Overlay */
+.product-image-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.7;
+    /* Darker overlay for collapsed items */
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none;
+    /* Allow clicks pass through to wrapper if needed, but wrapper receives click via JS usually */
+}
+
+.product-image-wrapper.active::after {
+    opacity: 0;
+    /* Clear overlay when active */
+}
+
+
+/* Content Styles */
+.products-title {
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.products-description {
+    color: #b0b0b0;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 60px;
+    max-width: 90%;
+}
+
+.products-description p {
+    margin-bottom: 20px;
+}
+
+/* Product Navigation (Tabs) */
+.product-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.product-nav-item {
+    margin-bottom: 25px;
+}
+
+.product-nav-link {
+    font-size: 24px;
+    line-height: 1.4;
+    color: #666;
+    /* Inactive color */
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+    padding-left: 0;
+}
+
+.product-nav-link:hover {
+    color: #fff;
+}
+
+.product-nav-link.active {
+    color: #fff;
+    font-weight: 600;
+    /* Bold/Italic as per screenshot style usually */
+    font-style: italic;
+    padding-left: 0;
+}
+
+/* See Details Link Effect */
+.see-details-link {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    /* Center relative to the wrapper */
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: underline;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 20;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 5px;
+    white-space: nowrap;
+}
+
+/* Hover Effects on Active Image */
+.product-image-wrapper.active:hover img {
+    transform: scale(1.1);
+}
+
+.product-image-wrapper.active:hover::after {
+    opacity: 0.3;
+    /* Slight darkening on hover for active item */
+}
+
+.product-image-wrapper.active:hover .see-details-link {
+    opacity: 1;
+}
+
+/* Support clicking on inactive panels to activate them? 
+   The JS currently only binds to the nav links. 
+   We should probably update JS to allow clicking clicking the image strip too, 
+   but for now let's stick to the visual changes requested.
+*/
