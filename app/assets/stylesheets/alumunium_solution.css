@@ -1,0 +1,245 @@
+/* ====================================
+   Aluminium Solutions Section Styles
+   ==================================== */
+
+/* Section Spacing */
+.aluminium-solutions-section {
+    padding: 100px 0;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+@media (max-width: 991px) {
+    .aluminium-solutions-section {
+        padding: 60px 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .aluminium-solutions-section {
+        padding: 40px 0;
+    }
+}
+
+/* Image Wrapper - Lightbox Link */
+.aluminium-image-wrapper {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: #000;
+}
+
+/* Floating Card Effect */
+.floating-card {
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.15),
+        0 6px 20px rgba(0, 0, 0, 0.1);
+    animation: float 6s ease-in-out infinite;
+    will-change: transform;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Stagger floating animations */
+.floating-card:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.floating-card:nth-child(2) {
+    animation-delay: 1.2s;
+}
+
+.floating-card:nth-child(3) {
+    animation-delay: 2.4s;
+}
+
+.floating-card:nth-child(4) {
+    animation-delay: 3.6s;
+}
+
+.floating-card:nth-child(5) {
+    animation-delay: 4.8s;
+}
+
+/* Floating Animation */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .floating-card {
+        animation: none;
+    }
+
+    .aluminium-text em {
+        animation: none !important;
+    }
+}
+
+/* Aluminium Image Container */
+.aluminium-image {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    transform: scale(1);
+}
+
+.aluminium-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Black Overlay - Hidden by default */
+.aluminium-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Hover Effects - Container */
+.aluminium-image-wrapper:hover .aluminium-image {
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.25),
+        0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover Effects - Overlay */
+.aluminium-image-wrapper:hover .aluminium-image::before {
+    opacity: 1;
+}
+
+/* Hover Effects - Image Zoom */
+.aluminium-image-wrapper:hover .aluminium-image img {
+    transform: scale(1.1);
+}
+
+/* Text Description Styling */
+.aluminium-text {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #1a1a1a;
+    text-align: center;
+    line-height: 1.2;
+    padding: 40px 20px;
+    font-family: 'Inter', sans-serif;
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.08),
+        0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive text sizing */
+@media (max-width: 1199px) {
+    .aluminium-text {
+        font-size: 2.2rem;
+        padding: 35px 15px;
+    }
+}
+
+@media (max-width: 991px) {
+    .aluminium-text {
+        font-size: 2rem;
+        padding: 30px 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .aluminium-text {
+        font-size: 1.5rem;
+        padding: 25px 10px;
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 575px) {
+    .aluminium-text {
+        font-size: 1.3rem;
+        padding: 20px 5px;
+    }
+}
+
+/* Emphasized Text - Italics with Glow */
+.aluminium-text em {
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    position: relative;
+    color: #000000;
+    animation: shine 4s ease-in-out infinite;
+}
+
+/* Glowing/Shiny Effect Animation */
+@keyframes shine {
+
+    0%,
+    100% {
+        text-shadow:
+            0 0 10px rgba(0, 0, 0, 0.15),
+            0 0 5px rgba(0, 0, 0, 0.1),
+            2px 2px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    50% {
+        text-shadow:
+            0 0 20px rgba(0, 0, 0, 0.25),
+            0 0 10px rgba(0, 0, 0, 0.15),
+            2px 2px 6px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Focus state for accessibility */
+.aluminium-image-wrapper:focus {
+    outline: 1px solid #fff;
+    outline-offset: 2px;
+}
+
+.aluminium-image-wrapper:focus .aluminium-image {
+    box-shadow:
+        0 0 0 3px rgba(0, 123, 255, 0.3),
+        0 10px 30px rgba(0, 0, 0, 0.15),
+        0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Performance optimization */
+.aluminium-image-wrapper,
+.aluminium-image {
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Ensure images maintain aspect ratio */
+.aluminium-image img {
+    object-fit: cover;
+    min-height: 200px;
+}
+
+@media (min-width: 992px) {
+    .aluminium-image img {
+        min-height: 280px;
+    }
+}
+
+/* Mobile touch optimization */
+@media (hover: none) and (pointer: coarse) {
+    .aluminium-image-wrapper:active .aluminium-image::before {
+        opacity: 1;
+    }
+
+    .aluminium-image-wrapper:active .aluminium-image img {
+        transform: scale(1.05);
+    }
+}

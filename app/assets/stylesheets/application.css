@@ -16,6 +16,7 @@
  *= require bootstrap-select.min.css
  *= require style.css
  *= require responsive.css
+ *= require alumunium_solution
  *= require_self
 */
 
@@ -23,6 +24,7 @@
 	nav.navbar.bootsnav .navbar-nav {
 		background-color: rgba(0, 0, 0, 0.95);
 	}
+
 	.center-logo {
 		padding: 10px 15px 10px 0;
 	}
@@ -31,38 +33,43 @@
 .alert {
 	color: #fff;
 }
+
 .alert-danger {
 	--bs-alert-color: #fff;
 	--bs-alert-bg: var(--red-color);
 	--bs-alert-border-color: var(--very-light-red-color);
 	--bs-alert-link-color: #fff;
 }
+
 .alert-success {
 	--bs-alert-color: #fff;
 	--bs-alert-bg: var(--green-color);
 	--bs-alert-border-color: var(--very-light-green-color);
 	--bs-alert-link-color: #fff;
 }
+
 .btn-close {
 	--bs-btn-close-color: #fff;
 	opacity: 1;
 	background: none;
 }
+
 .grecaptcha-badge {
 	display: none;
 }
 
 .header-buttons .btn.btn-rounded.btn-small {
-  padding: 5px 20px;
-  font-size: 12px;
-  font-weight: 500;
-  /* line-height: unset; */
-  height: min-content;
-  /* min-width: 112px; */
-  border-radius: 20px;
+	padding: 5px 20px;
+	font-size: 12px;
+	font-weight: 500;
+	/* line-height: unset; */
+	height: min-content;
+	/* min-width: 112px; */
+	border-radius: 20px;
 }
+
 .dropdown-menu {
-  background-color: rgba(255,255,255,.9);
+	background-color: rgba(255, 255, 255, .9);
 }
 
 input[type="text"].is-invalid,
@@ -125,15 +132,15 @@ textarea.is-invalid {
 	transition: 0.4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
 	background-color: #00a4ff;
 }
 
-input:focus + .slider {
+input:focus+.slider {
 	box-shadow: 0 0 1px #00E6FF;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
 	-webkit-transform: translateX(26px);
 	-ms-transform: translateX(26px);
 	transform: translateX(26px);
@@ -148,14 +155,14 @@ input:checked + .slider:before {
 }
 
 .free-trial-bg {
-  background-image: url('wavy.png');
-  background-size: contain !important;
+	background-image: url('wavy.png');
+	background-size: contain !important;
 }
 
 .footer-bg {
-  background-image: url('bg-footer.png');
+	background-image: url('bg-footer.png');
 }
 
 .layer-bg {
-  background-image: url('layer-1.png');
+	background-image: url('layer-1.png');
 }
