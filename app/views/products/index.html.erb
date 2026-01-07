@@ -11,7 +11,7 @@
               <a href="<%= product_path(product) %>">
                 <figure>
                   <div class="portfolio-img bg-deep-pink">
-                    <%= image_tag(url_for(product.image), alt: product.name) %>
+                    <%= image_tag(product.image.variant(resize_to_fill: [600, 600]), alt: product.name) %>
                   </div>
                   <figcaption>
                     <div class="portfolio-hover-main text-start">

@@ -13,7 +13,7 @@ class ArticlesController < ApplicationController
   def show
 		@article = Article.friendly.find(params[:id])
 		# Other Articles
-    @articles = Article.most_recent_articles(@article.id, 3)
+    @articles = Article.most_recent_articles(@article.id, 2)
   end
 
 end

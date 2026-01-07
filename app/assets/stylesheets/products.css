@@ -74,7 +74,7 @@
     visibility: visible;
     transform: none;
     /* Remove scale transform */
-    transition: flex 0.5s ease-in-out;
+    transition: flex 1.2s cubic-bezier(0.4, 0, 0.2, 1);
     /* Animate flex property */
     overflow: hidden;
     cursor: pointer;
@@ -94,12 +94,14 @@
 }
 
 .product-image-wrapper img {
-    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease-in-out;
-    min-width: 600px;
-    /* Prevent image squashing when container shrinks */
+    min-width: 100%;
+    /* Image stays fixed, container clips it */
 }
 
 /* Closed State Overlay */
@@ -113,7 +115,7 @@
     background-color: #000;
     opacity: 0.7;
     /* Darker overlay for collapsed items */
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
     /* Allow clicks pass through to wrapper if needed, but wrapper receives click via JS usually */
 }
@@ -138,7 +140,7 @@
 .products-description {
     color: #b0b0b0;
     font-size: 16px;
-    line-height: 1.8;
+    line-height: 1.4;
     margin-bottom: 60px;
     max-width: 90%;
 }
@@ -159,7 +161,7 @@
 }
 
 .product-nav-link {
-    font-size: 24px;
+    font-size: 22px;
     line-height: 1.4;
     color: #666;
     /* Inactive color */
@@ -174,7 +176,7 @@
 }
 
 .product-nav-link:hover {
-    color: #fff;
+    color: #d5d5d5 !important;
 }
 
 .product-nav-link.active {
@@ -205,18 +207,16 @@
     white-space: nowrap;
 }
 
-/* Hover Effects on Active Image */
-.product-image-wrapper.active:hover img {
-    transform: scale(1.1);
-}
+/* Hover Effects on Active Image - removed scale transform for clean accordion slide */
 
-.product-image-wrapper.active:hover::after {
-    opacity: 0.3;
-    /* Slight darkening on hover for active item */
-}
-
-.product-image-wrapper.active:hover .see-details-link {
+/* Show See Details link on active image */
+.product-image-wrapper.active .see-details-link {
     opacity: 1;
+}
+
+.see-details-link:hover {
+    color: #d5d5d5 !important;
+    text-decoration: underline !important;
 }
 
 /* Support clicking on inactive panels to activate them? 

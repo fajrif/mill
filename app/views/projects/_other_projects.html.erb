@@ -10,10 +10,10 @@
       <div class="row justify-content-center">
           <% @projects.each_with_index do |project, index| %>
             <!-- start services item -->
-            <div class="col-12 col-md-4 margin-40px-bottom sm-margin-20px-bottom wow animate__fadeInUp">
+            <div class="col-12 col-md-6 margin-40px-bottom sm-margin-20px-bottom wow animate__fadeInUp">
                 <div class="margin-20px-bottom overflow-hidden image-hover-style-1">
                   <a href="<%= project_path(project) %>">
-                    <%= image_tag url_for(project.image.variant(resize_to_fill: [360, 380])), class: "w-100" %>
+                    <%= image_tag url_for(project.image.variant(resize_to_fill: [600, 340])), class: "w-100" %>
                   </a>
                 </div>
                 <div>

@@ -11,7 +11,7 @@
         <% if index == 0 %>
           <div class="row align-items-center margin-100px-bottom sm-margin-50px-bottom">
             <div class="col-md-6 text-center md-margin-30px-bottom wow animate__fadeInLeft">
-              <%= image_tag url_for(article.image), class: "border-radius-6 w-100" %>
+              <%= image_tag article.image.variant(resize_to_fill: [600, 600]), class: "border-radius-6 w-100" %>
             </div>
             <div class="col-md-6 text-center text-md-start padding-eight-lr lg-padding-six-lr md-padding-15px-lr wow animate__fadeInRight" data-wow-delay="0.2s">
               <span class="text-uppercase margin-10px-bottom d-inline-block text-medium"><%= article.try(:category).try(:name) %></span>
@@ -29,7 +29,7 @@
               <a href="<%= article_path(article) %>" class="text-uppercase alt-font text-uppercase font-weight-400 text-medium w-100">Read More <i class="ti-arrow-right margin-5px-left text-black text-medium position-relative top-2" aria-hidden="true"></i></a>
             </div>
             <div class="col-md-6 text-center md-margin-30px-bottom order-1 order-md-2 wow animate__fadeInRight" data-wow-delay="0.2s">
-              <%= image_tag url_for(article.image), class: "border-radius-6 w-100" %>
+              <%= image_tag article.image.variant(resize_to_fill: [600, 600]), class: "border-radius-6 w-100" %>
             </div>
           </div>
         <% end %>

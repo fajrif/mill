@@ -137,9 +137,6 @@
     line-height: 1.2;
     padding: 40px 20px;
     font-family: 'Inter', sans-serif;
-    text-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.08),
-        0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 /* Responsive text sizing */
@@ -172,33 +169,13 @@
     }
 }
 
-/* Emphasized Text - Italics with Glow */
+/* Emphasized Text - Italics */
 .aluminium-text em {
     font-style: italic;
     font-family: 'Playfair Display', serif;
     font-weight: 400;
     position: relative;
     color: #000000;
-    animation: shine 4s ease-in-out infinite;
-}
-
-/* Glowing/Shiny Effect Animation */
-@keyframes shine {
-
-    0%,
-    100% {
-        text-shadow:
-            0 0 10px rgba(0, 0, 0, 0.15),
-            0 0 5px rgba(0, 0, 0, 0.1),
-            2px 2px 4px rgba(0, 0, 0, 0.08);
-    }
-
-    50% {
-        text-shadow:
-            0 0 20px rgba(0, 0, 0, 0.25),
-            0 0 10px rgba(0, 0, 0, 0.15),
-            2px 2px 6px rgba(0, 0, 0, 0.1);
-    }
 }
 
 /* Focus state for accessibility */
