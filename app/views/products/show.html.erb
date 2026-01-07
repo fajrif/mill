@@ -17,11 +17,11 @@
         <!-- Short Description -->
         <div class="row mb-5">
             <!-- Left: Images index 0 -->
-            <div class="col-12 col-lg-4 mx-auto order-lg-1 order-2 wow animate__fadeInLeft">
+            <div class="col-12 col-lg-5 mx-auto order-lg-1 order-2 wow animate__fadeInLeft">
                 <%= image_tag @product.images[0], class: "product-gallery-image" if @product.images.attached? && @product.images[0] %>
             </div>
             <!-- Right: Description -->
-            <div class="col-12 col-lg-8 padding-ten-all sm-padding-10px-all mx-auto order-lg-2 order-1 wow animate__fadeInRight">
+            <div class="col-12 col-lg-6 padding-ten-all sm-padding-10px-all mx-auto order-lg-2 order-1 wow animate__fadeInRight">
                 <%= raw @product.short_description %>
             </div>
         </div>
