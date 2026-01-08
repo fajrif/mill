@@ -42,52 +42,6 @@
     justify-content: center;
 }
 
-/* Responsive */
-@media (max-width: 991px) {
-    .products-layout {
-        flex-direction: column;
-    }
-
-    .products-images-col {
-        flex: 0 0 100%;
-        max-width: 100%;
-        margin-bottom: 40px;
-        min-height: 350px;
-        height: 350px;
-        position: relative;
-    }
-
-    .products-content-col {
-        flex: 0 0 100%;
-        max-width: 100%;
-        padding-left: 0;
-    }
-
-    /* On mobile, hide non-active wrappers and show only the active one full width */
-    .product-image-wrapper {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        flex: none;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.5s ease, visibility 0.5s ease;
-    }
-
-    .product-image-wrapper.active {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .product-image-wrapper img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-}
-
 /* Image Wrapper Styles - Accordion Item */
 .product-image-wrapper {
     position: relative;
@@ -233,8 +187,6 @@
     white-space: nowrap;
 }
 
-/* Hover Effects on Active Image - removed scale transform for clean accordion slide */
-
 /* Show See Details link on active image */
 .product-image-wrapper.active .see-details-link {
     opacity: 1;
@@ -245,8 +197,55 @@
     text-decoration: underline !important;
 }
 
-/* Support clicking on inactive panels to activate them? 
-   The JS currently only binds to the nav links. 
-   We should probably update JS to allow clicking clicking the image strip too, 
-   but for now let's stick to the visual changes requested.
-*/
+/* ========================================
+   RESPONSIVE STYLES - Must be at the end!
+   ======================================== */
+@media (max-width: 991px) {
+    .products-layout {
+        flex-direction: column;
+    }
+
+    .products-images-col {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 40px;
+        min-height: 350px;
+        height: 350px;
+        position: relative;
+        display: block;
+    }
+
+    .products-content-col {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-left: 0;
+    }
+
+    /* On mobile, hide non-active wrappers and show only the active one full width */
+    .product-image-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        flex: none;
+        opacity: 0;
+        visibility: hidden;
+        border-right: none;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .product-image-wrapper.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .product-image-wrapper img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
