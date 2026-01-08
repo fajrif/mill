@@ -22,7 +22,7 @@
                         <% Project.all.each_with_index do |project, index| %>
                             <div class="swiper-slide project-slide">
                                 <a href="<%= project_path(project) %>" class="project-slide-link">
-                                    <div class="project-slide-image-wrapper<%= ' margin-100px-top sm-margin-10px-top' if index.odd? %>">
+                                    <div class="project-slide-image-wrapper<%= ' margin-100px-top sm-no-margin-top' if index.odd? %>">
                                         <% if project.image.attached? %>
                                             <%= image_tag project.image, alt: project.name, class: "project-slide-image" %>
                                         <% else %>
