@@ -19,6 +19,7 @@
  *= require alumunium_solution
  *= require products
  *= require projects
+ *= require menu_overlay
  *= require_self
 */
 
@@ -167,4 +168,17 @@ input:checked+.slider:before {
 
 .layer-bg {
 	background-image: url('layer-1.png');
+}
+
+/* Styled underline link - matches "See details" styling */
+.link-underline-style {
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 5px;
+	transition: opacity 0.3s ease;
+}
+
+.link-underline-style:hover {
+	opacity: 0.7;
+	text-decoration: underline;
 }

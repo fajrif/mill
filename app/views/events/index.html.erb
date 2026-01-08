@@ -30,7 +30,7 @@
                     <div class="col-12 col-md-4 ps-md-5">
                        <span class="event-date d-block"><%= event.published_date.strftime("%B %d, %Y") if event.published_date %></span>
                        <a href="<%= event_path(event) %>" class="event-list-title text-large text-script d-block"><%= event.title %></a>
-                       <a href="<%= event_path(event) %>" class="event-read-more text-decoration-underline">Read More</a>
+                       <a href="<%= event_path(event) %>" class="event-read-more link-underline-style">Read More</a>
                     </div>
                 </div>
             <% end %>
@@ -54,7 +54,7 @@
                     <div class="col-12 col-md-4 ps-md-5">
                        <span class="event-date d-block"><%= event.published_date.strftime("%B %d, %Y") if event.published_date %></span>
                        <a href="<%= event_path(event) %>" class="event-list-title text-large text-script d-block"><%= event.title %></a>
-                       <a href="<%= event_path(event) %>" class="event-read-more text-decoration-underline">Read More</a>
+                       <a href="<%= event_path(event) %>" class="event-read-more link-underline-style">Read More</a>
                     </div>
                 </div>
             <% end %>

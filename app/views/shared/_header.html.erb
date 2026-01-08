@@ -13,55 +13,74 @@
             <!-- end logo -->
             <!-- start main menu -->
             <div class="col-auto pe-0">
-                <div class="menu-wrap full-screen">
-                    <div class="row g-0 h-100 justify-content-center">
-                        <div class="col-md-6 p-0 text-center z-index-0 d-none d-md-flex flex-column justify-content-center">
-                            <div class="z-index-minus1 opacity-full-dark bg-black"></div>
-                            <%= link_to root_path, title: "Mill" do %>
-                              <%= image_tag("logo-white.png", class: "w-50", alt: "Mill") %>
-                            <% end %>
-                        </div>
-                        <div id="parentMenuMill" class="col-md-6 px-0 full-screen d-flex flex-column justify-content-center xs-padding-45px-tb bg-dark-gray">
-                          <div style="z-index:999">
-                            <div class="w-100 overflow-auto">
-                              <div class="h-100 w-100">
-                                <div class="h-100 w-100 overflow-hidden align-middle text-center text-md-end padding-six-lr alt-font link-style-2 lg-padding-six-lr xs-padding-15px-lr">
-                                  <div class="d-block d-md-none">
-                                    <%= link_to root_path, title: "Mill" do %>
-                                      <%= image_tag("logo-black.png", class: "w-180px", alt: "Mill") %>
-                                    <% end %>
-                                  </div>
-                                  <!-- start menu -->
-                                  <ul class="font-weight-400 no-padding-left mt-0 mb-0">
-                                    <li class="home"><a class="<%= 'active' if is_home_page? %>" href="<%= root_url %>">Home</a></li>
-                                    <li class="about"><a class="<%= 'active' if is_about_page? %>" href="<%= about_url %>">About</a></li>
-                                    <li class="products"><a class="<%= 'active' if is_products_page? %>" href="<%= products_url %>">Products</a></li>
-                                    <li class="projects"><a class="<%= 'active' if is_projects_page? %>" href="<%= projects_url %>">Projects</a></li>
-                                    <li class="articles"><a class="<%= 'active' if is_articles_page? %>" href="<%= articles_url %>">Articles</a></li>
-                                    <li class="events"><a class="<%= 'active' if is_events_page? %>" href="<%= events_url %>">Events</a></li>
-                                    <li class="contact"><a class="<%= 'active' if is_contact_page? %>" href="<%= contact_url %>">Contact Us</a></li>
-                                  </ul>
-                                  <!-- end menu -->
-                                  <!-- start social links -->
-                                  <div class="margin-seven-top">
-                                    <div class="icon-social-large">
-                                      <a href="<%= configatron.social_instagram_url %>" target="_blank" class="hover-style-instagram margin-one-lr"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
-                                      <a href="<%= configatron.social_facebook_url %>" target="_blank" class="hover-style-facebook margin-one-lr"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
-                                      <a href="<%= configatron.social_youtube_url %>" target="_blank" class="hover-style-youtube margin-one-lr"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
-                                    </div>
-                                  </div>
-                                  <!-- start social links -->
-                                </div>
-                              </div>
+                <div class="menu-wrap full-screen menu-overlay">
+                    <!-- Fullscreen menu overlay -->
+                    <div class="menu-overlay-content">
+                        <!-- Top Section: Logo and Close Button -->
+                        <div class="menu-overlay-header">
+                            <div class="menu-overlay-logo">
+                                <%= link_to root_path, title: "Mill" do %>
+                                    <%= image_tag("logo-black.png", alt: "Mill", class: "menu-logo-img") %>
+                                <% end %>
                             </div>
-                            <button class="close-button-menu" id="close-button"></button>
-                          </div>
+                            <button class="menu-close-btn" id="close-button" aria-label="Close menu">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M6 6L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Main Content: Two Column Layout -->
+                        <div class="menu-overlay-body">
+                            <!-- Left Column: Contact Info and Social Links -->
+                            <div class="menu-body-left">
+                                <div class="menu-contact-info">
+                                    <a href="tel:<%= configatron.phone.gsub(' ', '') %>" class="menu-contact-link"><%= configatron.phone %></a>
+                                    <a href="mailto:<%= configatron.email %>" class="menu-contact-link"><%= configatron.email %></a>
+                                </div>
+                                <div class="menu-social-links">
+                                    <a href="<%= configatron.social_instagram_url %>" target="_blank" class="menu-social-icon" aria-label="Instagram">
+                                        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="<%= configatron.social_facebook_url %>" target="_blank" class="menu-social-icon" aria-label="Facebook">
+                                        <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="<%= configatron.social_youtube_url %>" target="_blank" class="menu-social-icon" aria-label="YouTube">
+                                        <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Right Column: Navigation Menu and CTA Buttons -->
+                            <div class="menu-body-right">
+                                <div class="menu-nav-wrapper">
+                                    <ul class="menu-nav-list">
+                                        <li><a class="menu-nav-link<%= ' active' if is_home_page? %>" href="<%= root_url %>">Home</a></li>
+                                        <li><a class="menu-nav-link<%= ' active' if is_about_page? %>" href="<%= about_url %>">About</a></li>
+                                        <li><a class="menu-nav-link<%= ' active' if is_products_page? %>" href="<%= products_url %>">Products</a></li>
+                                        <li><a class="menu-nav-link<%= ' active' if is_projects_page? %>" href="<%= projects_url %>">Projects</a></li>
+                                        <li><a class="menu-nav-link<%= ' active' if is_articles_page? %>" href="<%= articles_url %>">Articles</a></li>
+                                        <li><a class="menu-nav-link<%= ' active' if is_events_page? %>" href="<%= events_url %>">Events</a></li>
+                                        <li><a class="menu-nav-link<%= ' active' if is_contact_page? %>" href="<%= contact_url %>">Contact Us</a></li>
+                                    </ul>
+                                </div>
+                                <div class="menu-cta-wrapper">
+                                    <a href="<%= configatron.whatsapp_inquiry_url %>" target="_blank" class="menu-cta-btn">
+                                        <span>INQUIRY</span>
+                                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="<%= configatron.whatsapp_service_url %>" target="_blank" class="menu-cta-btn">
+                                        <span>SERVICE REQUEST</span>
+                                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- end main menu -->
                 <button class="navbar-toggler mobile-toggle" type="button" id="open-button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
-                    <span></span>
                     <span></span>
                     <span></span>
                 </button>
