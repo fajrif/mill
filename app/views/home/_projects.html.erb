@@ -1,0 +1,108 @@
+<!-- start projects section -->
+
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<section class="projects-slider-section" id="projects">
+    <div class="projects-slider-container">
+        <div class="projects-slider-layout">
+            <!-- Left Column: Title and Description -->
+            <div class="projects-info-col">
+                <div class="projects-section-title">OUR PROJECTS</div>
+                <div class="projects-section-description">
+                    <p>Through close collaboration with architects and builders, MiLL Aluminium delivers solutions that unite performance and elegance, creating environments where function and form coexist beautifully.</p>
+                </div>
+                <a href="<%= projects_path %>" class="projects-see-more-link text-uppercase">See more</a>
+            </div>
+
+            <!-- Right Column: Swiper Slider -->
+            <div class="projects-carousel-col">
+                <div class="swiper projects-swiper">
+                    <div class="swiper-wrapper">
+                        <% Project.all.each_with_index do |project, index| %>
+                            <div class="swiper-slide project-slide">
+                                <a href="<%= project_path(project) %>" class="project-slide-link">
+                                    <div class="project-slide-image-wrapper<%= ' margin-100px-top sm-margin-10px-top' if index.odd? %>">
+                                        <% if project.image.attached? %>
+                                            <%= image_tag project.image, alt: project.name, class: "project-slide-image" %>
+                                        <% else %>
+                                            <img src="https://placehold.co/600x450" alt="<%= project.name %>" class="project-slide-image">
+                                        <% end %>
+                                    </div>
+                                    <div class="project-slide-title">
+                                        <span class="project-code">HD -</span> <%= project.name %>
+                                    </div>
+                                </a>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+
+                <!-- Navigation Arrows -->
+                <div class="projects-carousel-nav">
+                    <button class="carousel-arrow carousel-arrow-prev" id="projectsPrevBtn" aria-label="Previous project">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button class="carousel-arrow carousel-arrow-next" id="projectsNextBtn" aria-label="Next project">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const projectsSwiper = new Swiper('.projects-swiper', {
+        // Enable infinite loop
+        loop: true,
+        
+        // Slides per view
+        slidesPerView: 1.2,
+        spaceBetween: 30,
+        
+        // Speed
+        speed: 600,
+        
+        // Responsive breakpoints
+        breakpoints: {
+            480: {
+                slidesPerView: 1.3,
+                spaceBetween: 30,
+            },
+            768: {
+                slidesPerView: 1.5,
+                spaceBetween: 40,
+            },
+            1024: {
+                slidesPerView: 1.8,
+                spaceBetween: 50,
+            },
+            1200: {
+                slidesPerView: 2,
+                spaceBetween: 60,
+            },
+            1400: {
+                slidesPerView: 2.2,
+                spaceBetween: 60,
+            }
+        },
+        
+        // Navigation arrows (custom buttons)
+        navigation: {
+            nextEl: '#projectsNextBtn',
+            prevEl: '#projectsPrevBtn',
+        },
+    });
+});
+</script>
+
+<!-- end projects section -->

@@ -1,0 +1,244 @@
+/* Projects Slider Section Styles */
+.projects-slider-section {
+    background-color: #e8e8e8;
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+.projects-slider-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 auto;
+}
+
+/* Layout Grid */
+.projects-slider-layout {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 60px;
+}
+
+/* Left Column: Info */
+.projects-info-col {
+    flex: 0 0 400px;
+    max-width: 400px;
+    padding-top: 20px;
+    padding-left: 60px;
+}
+
+.projects-section-title {
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin-bottom: 24px;
+    font-weight: 500;
+}
+
+.projects-section-description {
+    color: #4a4a4a;
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.projects-section-description p {
+    margin: 0;
+}
+
+.projects-see-more-link {
+    font-size: 14px;
+    color: #1a1a1a;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    letter-spacing: 0.5px;
+    transition: opacity 0.3s ease;
+}
+
+.projects-see-more-link:hover {
+    opacity: 0.7;
+    color: #1a1a1a;
+    text-decoration: underline;
+}
+
+/* Right Column: Carousel */
+.projects-carousel-col {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    overflow: visible;
+}
+
+/* Swiper Container */
+.projects-swiper {
+    overflow: visible;
+    position: relative;
+}
+
+.projects-swiper .swiper-wrapper {
+    align-items: flex-start;
+}
+
+/* Individual Slide */
+.project-slide {
+    height: auto;
+}
+
+.project-slide-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.project-slide-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.project-slide-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background-color: #d0d0d0;
+}
+
+.project-slide-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.project-slide-link:hover .project-slide-image {
+    transform: scale(1.03);
+}
+
+.project-slide-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 400;
+    color: #1a1a1a;
+    padding-top: 5px;
+}
+
+.project-code {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+}
+
+/* Navigation Arrows */
+.projects-carousel-nav {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.carousel-arrow {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #1a1a1a;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: #1a1a1a;
+}
+
+.carousel-arrow:hover {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+.carousel-arrow:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(26, 26, 26, 0.3);
+}
+
+.carousel-arrow svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1400px) {
+    .projects-slider-container {
+        padding: 0 40px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .projects-slider-layout {
+        gap: 40px;
+    }
+
+    .projects-info-col {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-left: 40px;
+    }
+
+    .project-slide-image {
+        height: 350px;
+    }
+}
+
+@media (max-width: 991px) {
+    .projects-slider-section {
+        padding: 60px 0;
+    }
+
+    .projects-slider-container {
+        padding: 0 30px;
+    }
+
+    .projects-info-col {
+        padding-left: 0;
+    }
+
+    .project-slide-image {
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-slider-section {
+        padding: 50px 0;
+    }
+
+    .projects-slider-container {
+        padding: 0 20px;
+    }
+
+    .projects-slider-layout {
+        gap: 30px;
+    }
+
+    .project-slide-image {
+        height: 280px;
+    }
+
+    .project-slide-title {
+        font-size: 18px;
+    }
+
+    .projects-carousel-nav {
+        margin-top: 30px;
+    }
+
+    .carousel-arrow {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-slide-image {
+        height: 250px;
+    }
+}
