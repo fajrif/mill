@@ -1,8 +1,9 @@
 <!-- start aluminium solutions section -->
-<section class="wow animate__fadeIn aluminium-solutions-section" id="aluminium-solutions">
+<section class="aluminium-solutions-section" id="aluminium-solutions">
+    <!-- Image Gallery Below -->
     <div class="container">
-        <!-- Bottom Row: 3 Images portrait -->
-        <div class="row justify-content-center align-items-center">
+        <!-- Top Row: 3 Images portrait -->
+        <div class="row justify-content-center align-items-center" id="portrait-images-row">
             <div class="col-12 col-lg-4 col-md-6 mb-4 mb-lg-0 wow animate__fadeInUp" data-wow-delay="0.1s">
                 <div class="aluminium-image-wrapper floating-card">
                     <div class="aluminium-image">
@@ -28,16 +29,30 @@
 
         <!-- Center: Text Description -->
         <div class="row justify-content-center mb-5">
-            <div class="col-12 col-lg-10 col-md-11 wow animate__fadeIn" data-wow-delay="0.6s">
-                <div class="aluminium-text">
-                    Aluminium solutions that <em>seamlessly</em> extend your living space, framing panoramic views while bringing <em>light</em>, <em>openness</em>, and <em>comfort</em> into your everyday life.
+            <div class="col-12 col-lg-10 col-md-11">
+                <!-- Text Parallax Area -->
+                <div class="text-parallax-wrapper">
+                    <div class="text-parallax-sticky">
+                        <div class="text-parallax-container" data-text-parallax>
+                            <div class="text-parallax-line">
+                                <span data-parallax-text>Aluminium solutions that </span><span data-parallax-text class="parallax-italic">seamlessly</span><span data-parallax-text> extend your living</span>
+                            </div>
+                            <div class="text-parallax-line">
+                                <span data-parallax-text>space, framing panoramic views while bringing </span><span data-parallax-text class="parallax-italic">light</span><span data-parallax-text>,</span>
+                            </div>
+                            <div class="text-parallax-line">
+                                <span data-parallax-text class="parallax-italic">openness</span><span data-parallax-text>, and </span><span data-parallax-text class="parallax-italic">comfort</span><span data-parallax-text> into your everyday life.</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
 
         <!-- Bottom Row: 2 Images landscape -->
         <div class="row justify-content-center align-items-center">
-            <div class="col-12 col-lg-6 -md-6 mb-5 wow animate__fadeInUp" data-wow-delay="0.4s">
+            <div class="col-12 col-lg-6 col-md-6 mb-5 wow animate__fadeInUp" data-wow-delay="0.4s">
                 <div class="aluminium-image-wrapper floating-card">
                     <div class="aluminium-image">
                         <%= image_tag('placeholder-1.jpg', alt: 'Modern aluminium window solution with panoramic views', class: 'img-fluid') %>
@@ -55,3 +70,102 @@
     </div>
 </section>
 <!-- end aluminium solutions section -->
+
+<% content_for :tail do %>
+<script>
+(function() {
+  'use strict';
+
+  // Check if GSAP is available
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+    console.warn('Text Parallax: GSAP or ScrollTrigger not loaded');
+    return;
+  }
+
+  // Register ScrollTrigger
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Respect reduced motion preferences
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    document.querySelectorAll('[data-parallax-text]').forEach(function(span) {
+      span.style.opacity = '1';
+    });
+    return;
+  }
+
+  // Find all text elements to split into characters
+  var textElements = document.querySelectorAll('[data-parallax-text]');
+  if (textElements.length === 0) return;
+
+  var allChars = [];
+
+  // Split each text element into individual character spans
+  textElements.forEach(function(el) {
+    var text = el.textContent;
+    el.textContent = '';
+    el.setAttribute('aria-label', text);
+
+    for (var i = 0; i < text.length; i++) {
+      var charSpan = document.createElement('span');
+      charSpan.className = 'char';
+
+      if (text[i] === ' ') {
+        charSpan.innerHTML = '&nbsp;';
+        charSpan.classList.add('char--space');
+      } else {
+        charSpan.textContent = text[i];
+      }
+
+      el.appendChild(charSpan);
+      allChars.push(charSpan);
+    }
+  });
+
+  // Random number helper
+  function randomBetween(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  // Set initial scattered state for each character
+  allChars.forEach(function(charEl) {
+    gsap.set(charEl, {
+      x: randomBetween(-300, 300),
+      y: randomBetween(-150, 150),
+      z: randomBetween(-500, 100),
+      rotateY: randomBetween(-120, 120),
+      rotateX: randomBetween(-30, 30),
+      scale: randomBetween(0.2, 0.6),
+      opacity: 0
+    });
+  });
+
+  // Create the scroll-triggered animation
+  // Use the portrait images row as the trigger so text animates while images appear
+  var imagesRow = document.querySelector('#portrait-images-row');
+  if (!imagesRow) return;
+
+  gsap.to(allChars, {
+    x: 0,
+    y: 0,
+    z: 0,
+    rotateY: 0,
+    rotateX: 0,
+    scale: 1,
+    opacity: 1,
+    duration: 1,
+    ease: 'power2.out',
+    stagger: {
+      each: 0.02,
+      from: 'random'
+    },
+    scrollTrigger: {
+      trigger: imagesRow,
+      start: 'top 80%',
+      end: 'bottom 20%',
+      scrub: 1.5
+    }
+  });
+})();
+</script>
+<% end %>

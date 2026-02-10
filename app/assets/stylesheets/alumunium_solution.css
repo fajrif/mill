@@ -2,11 +2,114 @@
    Aluminium Solutions Section Styles
    ==================================== */
 
+/* =========================
+   Text Parallax Effect
+   ========================= */
+
+/* Scroll spacer – gives the scroll distance for the animation */
+.text-parallax-wrapper {
+    /*height: 250vh;*/
+    position: relative;
+}
+
+/* Sticky viewport – stays fixed while user scrolls through wrapper */
+.text-parallax-sticky {
+    position: sticky;
+    top: 0;
+    /*height: 100vh;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /*background: #ffffff;*/
+}
+
+/* 3D perspective container */
+.text-parallax-container {
+    perspective: 800px;
+    text-align: center;
+    /*padding: 0 40px;*/
+    margin: 50px 0;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Each line of text */
+.text-parallax-line {
+    display: block;
+    /*margin-bottom: 4px;*/
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 300;
+    color: #1a1a1a;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+/* Italic/emphasis lines */
+.text-parallax-line--italic {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: #000000;
+}
+
+/* Italic words within a line */
+.parallax-italic {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* Individual character span */
+.char {
+    display: inline-block;
+    will-change: transform, opacity;
+    transform-style: preserve-3d;
+}
+
+.char--space {
+    width: 0.3em;
+}
+
+/* Responsive text parallax */
+@media (max-width: 991px) {
+    .text-parallax-wrapper {
+        height: 200vh;
+    }
+
+    .text-parallax-line {
+        font-size: clamp(1.4rem, 3.5vw, 2.5rem);
+        white-space: normal;
+    }
+
+    .text-parallax-container {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 575px) {
+    .text-parallax-wrapper {
+        height: 180vh;
+    }
+
+    .text-parallax-line {
+        font-size: clamp(1.1rem, 5vw, 1.8rem);
+    }
+
+    .text-parallax-container {
+        padding: 0 15px;
+    }
+}
+
+/* =========================
+   Section Spacing
+   ========================= */
+
 /* Section Spacing */
 .aluminium-solutions-section {
-    padding: 100px 0;
+    /*padding: 0 0 100px 0;*/
     background: #ffffff;
-    overflow: hidden;
 }
 
 @media (max-width: 991px) {
