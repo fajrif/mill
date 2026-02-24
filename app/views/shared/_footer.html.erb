@@ -1,4 +1,8 @@
 <%= render "contacts/contact_form" unless is_contact_page? %>
+<div class="whatsapp-wrapper">
+    <a href="https://wa.me/<%= configatron.wa_number %>"><img src="<%= image_url('whatsapp.png') %>" alt="whatsapp" /></a>
+</div>
+
 <!-- start footer -->
 <footer class="footer-standard bg-black text-white-2">
     <div class="footer-widget-area padding-six-tb sm-padding-30px-tb">
