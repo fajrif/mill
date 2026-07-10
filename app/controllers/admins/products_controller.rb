@@ -49,6 +49,11 @@ class Admins::ProductsController < Admins::BaseController
     redirect_to admins_products_url, :notice => "Successfully destroyed product."
   end
 
+  def delete_attachment_image
+    @product.images.attachments.find(params[:asset_id]).purge
+    redirect_to admins_product_path(@product), :notice => "Successfully deleted image."
+  end
+
   private
 
   def params_product

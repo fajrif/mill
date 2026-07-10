@@ -7,33 +7,24 @@
           <h3 style="text-transform: uppercase; letter-spacing: 1px;" class="">OUR PRODUCTS</h3>
           <p>More than just variety, our range is about finding the right solution for every environment. Whether for a modern residence or a large-scale project, MiLL Aluminium products combine design, durability, and performance to meet unique architectural visions. With every frame, we provide not just function, but a new way to shape your space.</p>
         </div>
-        <ul class="hover-option2 portfolio-wrapper grid grid-loading grid-2col xl-grid-2col lg-grid-2col md-grid-2col sm-grid-2col xs-grid-1col gutter-medium">
-          <li class="grid-sizer"></li>
+        <div class="row justify-content-center">
           <% @products.each do |product| %>
-            <!-- start  portfolio item -->
-            <li class="grid-item web branding design wow animate__fadeInUp last-paragraph-no-margin">
-              <a href="<%= product_path(product) %>">
-                <figure>
-                  <div class="portfolio-img bg-deep-pink">
-                    <%= image_tag(product.image.variant(resize_to_fill: [600, 600]), alt: product.name) %>
-                  </div>
-                  <figcaption>
-                    <div class="portfolio-hover-main text-start">
-                      <div class="portfolio-hover-box align-bottom">
-                        <div class="portfolio-hover-content position-relative last-paragraph-no-margin">
-                          <div class="bg-teal margin-25px-bottom separator-line-horrizontal-medium-light2"></div>
-                          <span class="line-height-normal alt-font text-white-2 text-uppercase text-uppercase margin-one-half-bottom d-block font-weight-600"><%= product.name %></span>
-                          <p class="text-white-2 text-extra-small"><%= product.caption %></p>
-                        </div>
-                      </div>
-                    </div>
-                  </figcaption>
-                </figure>
-              </a>
-            </li>
-            <!-- end portfolio item -->
+            <!-- start products item -->
+            <div class="col-12 col-md-4 margin-40px-bottom sm-margin-20px-bottom wow animate__fadeInUp">
+              <div class="margin-20px-bottom overflow-hidden image-hover-style-1">
+                <a href="<%= product_path(product) %>">
+                  <% if product.images.attached? && product.images[0] %>
+                    <%= image_tag url_for(product.images[0].variant(resize_to_fill: [360, 380])), class: "w-100", alt: product.code %>
+                  <% end %>
+                </a>
+              </div>
+              <div>
+                <a href="<%= product_path(product) %>" class="alt-font d-block text-extra-large text-uppercase font-weight-400"><%= product.code %></a>
+              </div>
+            </div>
+            <!-- end products item -->
           <% end %>
-        </ul>
+        </div>
       </div>
     </div>
   </div>

@@ -28,7 +28,12 @@ Rails.application.routes.draw do
     resources :testimonials
     resources :contacts
     resources :features
-    resources :products
+    resources :products do
+      member do
+        delete "delete_attachment_image/:asset_id" => "products#delete_attachment_image", :as => :delete_attachment_image
+      end
+      resources :product_openings, only: [:create, :update, :destroy]
+    end
     resources :projects
   end
 

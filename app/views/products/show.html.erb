@@ -1,42 +1,107 @@
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
 <!-- start parallax hero section -->
 <section class="wow animate__fadeIn p-0 overflow-visible parallax cover-background" data-parallax-background-ratio="0.5" style="background-image:url('<%= url_for(@product.banner) %>');">
     <div class="container-fluid padding-thirteen-lr one-fourth-screen sm-padding-15px-lr">
         <div class="row h-100 align-items-center">
             <div class="col-12 text-center position-relative">
               <h3 class="font-weight-500 text-white-2 text-script mb-0">
-                <%= @product.name %>
+                <%= @product.code %>
               </h3>
             </div>
         </div>
     </div>
 </section>
 <!-- end parallax hero section -->
-<section class="big-section pb-5 wow animate__fadeIn fadeInUp">
-    <!-- Content & Gallery -->
+<!-- start product feature section -->
+<section class="product-feature-section wow animate__fadeIn">
     <div class="container">
-        <!-- Short Description -->
-        <div class="row mb-5">
-            <!-- Left: Images index 0 -->
-            <div class="col-12 col-lg-5 mx-auto order-lg-1 order-2 wow animate__fadeInLeft">
-                <%= image_tag @product.images[0], class: "product-gallery-image" if @product.images.attached? && @product.images[0] %>
+        <div class="row align-items-center">
+            <!-- Left: Code + Short Description -->
+            <div class="col-12 col-lg-5 product-feature-content order-lg-1 order-2 wow animate__fadeInLeft">
+                <h2 class="product-feature-code"><%= @product.code %></h2>
+                <div class="product-feature-description"><%= raw @product.short_description %></div>
             </div>
-            <!-- Right: Description -->
-            <div class="col-12 col-lg-6 padding-ten-all sm-padding-10px-all mx-auto order-lg-2 order-1 wow animate__fadeInRight">
-                <%= raw @product.short_description %>
-            </div>
-        </div>
-
-        <!-- Description -->
-        <div class="row mb-5">
-            <!-- Left: Description -->
-            <div class="col-12 col-lg-6 padding-ten-all sm-padding-10px-all mx-auto wow animate__fadeInLeft">
-                <%= raw @product.description %>
-            </div>
-            <!-- Right: Images index 1 -->
-            <div class="col-12 col-lg-6 mx-auto wow animate__fadeInRight">
-                <%= image_tag @product.images[1], class: "product-gallery-image" if @product.images.attached? && @product.images[1] %>
+            <!-- Right: Images Slider -->
+            <div class="col-12 col-lg-7 product-feature-media order-lg-2 order-1 wow animate__fadeInRight">
+                <% if @product.images.attached? && @product.images.any? %>
+                    <div class="swiper product-swiper">
+                        <div class="swiper-wrapper">
+                            <% @product.images.each do |image| %>
+                                <div class="swiper-slide">
+                                    <%= image_tag image, class: "product-swiper-image" %>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+                    <div class="product-swiper-nav">
+                        <button class="carousel-arrow carousel-arrow-prev" id="productPrevBtn" aria-label="Previous image">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <button class="carousel-arrow carousel-arrow-next" id="productNextBtn" aria-label="Next image">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                <% else %>
+                    <div class="product-feature-media-placeholder"></div>
+                <% end %>
             </div>
         </div>
     </div>
 </section>
+<!-- end product feature section -->
+
+<!-- start product description section -->
+<section class="product-description-section wow animate__fadeIn">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <%= raw @product.description %>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end product description section -->
+
+<!-- start opening possibilities section -->
+<% if @product.product_openings.any? %>
+<section class="product-openings-section wow animate__fadeIn">
+    <div class="container">
+        <h2 class="product-openings-title">Opening Possibilities</h2>
+        <div class="row">
+            <% @product.product_openings.each do |opening| %>
+                <div class="col-6 col-md-3 product-opening-item wow animate__fadeInUp">
+                    <h5 class="product-opening-title"><%= opening.title %></h5>
+                    <div class="product-opening-description"><%= opening.description %></div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</section>
+<% end %>
+<!-- end opening possibilities section -->
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    new Swiper('.product-swiper', {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 0,
+        speed: 600,
+        grabCursor: true,
+        navigation: {
+            nextEl: '#productNextBtn',
+            prevEl: '#productPrevBtn',
+        },
+    });
+});
+</script>
+
 <%= render "other_products" %>

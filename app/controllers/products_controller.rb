@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
   def show
 		@product = Product.friendly.find(params[:id])
 		# Other Products
-    @products = Product.most_recent_products(@product.id, 3)
+    @products = Product.most_recent_products(@product.id, 2)
   end
 
 end

@@ -29,7 +29,12 @@
 						<td><b>Images</b></td>
 						<td>
 							<% @product.images.each do |image| %>
-								<%= image_tag image.variant(resize_to_limit: [100,100]) %><br/>
+								<div class="d-inline-block text-center me-2 mb-2">
+									<%= image_tag image.variant(resize_to_limit: [100,100]) %><br/>
+									<%= link_to delete_attachment_image_admins_product_path(@product, image.id), :class => "btn btn-danger btn-sm mt-1", :data => { :confirm => 'Are you sure you want to delete this image?' }, :method => :delete do %>
+										<i class="ri-delete-bin-fill"></i>
+									<% end %>
+								</div>
 							<% end%>
 						</td>
 					</tr>
@@ -80,3 +85,60 @@
 		</div>
 	</div>
 </div>
+
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header d-flex align-items-center justify-content-between">
+				<h5 class="card-title mb-0">Product Openings</h5>
+				<button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#openingModal_new">
+					<i class="ri-add-line align-bottom"></i> Add Opening
+				</button>
+			</div>
+			<div class="card-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th style="width:20%;">Title</th>
+							<th>Description</th>
+							<th style="width:15%;">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @product.product_openings.each do |opening| %>
+							<tr>
+								<td><%= opening.title %></td>
+								<td><%= opening.description.body.present? ? truncate(opening.description.to_plain_text, length: 120) : "-" %></td>
+								<td>
+									<button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#openingModal_<%= opening.id %>">
+										<i class="ri-pencil-fill"></i>
+									</button>
+									<%= link_to admins_product_product_opening_path(@product, opening), :class => "btn btn-danger btn-sm", :data => { :confirm => 'Are you sure you want to delete this opening?' }, :method => :delete do %>
+										<i class="ri-delete-bin-fill"></i>
+									<% end %>
+								</td>
+							</tr>
+						<% end %>
+						<% if @product.product_openings.empty? %>
+							<tr>
+								<td colspan="3" class="text-center text-muted">No openings added yet.</td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%= render "admins/product_openings/modal", opening: @product.product_openings.new %>
+<% @product.product_openings.each do |opening| %>
+	<%= render "admins/product_openings/modal", opening: opening %>
+<% end %>
+
+<%= content_for :tail do %>
+	<%= stylesheet_link_tag :actiontext, "data-turbo-track": "reload" %>
+	<%= javascript_include_tag :trix %>
+	<%= javascript_include_tag :actiontext %>
+	<%= javascript_include_tag "trix_config.js" %>
+<% end %>

@@ -12,8 +12,8 @@
 						<%= f.input :code, as: :string %>
 						<%= f.input :name, as: :string %>
 						<%= f.input :caption, as: :string %>
-						<%= f.input :short_description, as: :text %>
-						<%= f.input :description, as: :text %>
+						<%= f.input :short_description, as: :rich_text_area %>
+						<%= f.input :description, as: :rich_text_area %>
 					</fieldset>
 					<%= f.error :base %>
 					<div class="form-actions">
@@ -33,4 +33,11 @@
 			</div>
 		</div>
 	</div>
+<% end %>
+
+<%= content_for :tail do %>
+	<%= stylesheet_link_tag :actiontext, "data-turbo-track": "reload" %>
+	<%= javascript_include_tag :trix %>
+	<%= javascript_include_tag :actiontext %>
+	<%= javascript_include_tag "trix_config.js" %>
 <% end %>

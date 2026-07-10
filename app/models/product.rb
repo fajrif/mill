@@ -7,6 +7,9 @@ class Product < ApplicationRecord
 	has_many_attached :images, dependent: :purge
 	has_one_attached :banner, dependent: :purge
 	has_one_attached :technical_drawing, dependent: :purge
+	has_many :product_openings, -> { order(:id) }, dependent: :destroy
+	has_rich_text :short_description
+	has_rich_text :description
 
 	validates :image, attached: true, content_type: ['image/png', 'image/jpeg'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
@@ -29,7 +32,7 @@ class Product < ApplicationRecord
 	end
 
 	def headline
-		self.short_description ? self.short_description : ""
+		self.short_description.to_s
 	end
 
 end

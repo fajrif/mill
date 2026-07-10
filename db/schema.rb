@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_02_27_155307) do
+ActiveRecord::Schema[7.1].define(version: 2026_07_10_134055) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -128,15 +128,21 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_27_155307) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "product_openings", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.string "title", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_openings_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "caption", default: "", null: false
-    t.string "short_description", default: "", null: false
-    t.string "description", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug", null: false
-    t.string "code"
+    t.string "code", null: false
     t.index ["code"], name: "index_products_on_code", unique: true
     t.index ["name"], name: "index_products_on_name", unique: true
     t.index ["slug"], name: "index_products_on_slug", unique: true
@@ -168,4 +174,5 @@ ActiveRecord::Schema[7.1].define(version: 2026_02_27_155307) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "product_openings", "products"
 end

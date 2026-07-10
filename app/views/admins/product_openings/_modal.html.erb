@@ -1,0 +1,26 @@
+<% modal_id = opening.persisted? ? "openingModal_#{opening.id}" : "openingModal_new" %>
+<% modal_title = opening.persisted? ? "Edit Opening" : "Add Opening" %>
+<% url = opening.persisted? ? admins_product_product_opening_path(@product, opening) : admins_product_product_openings_path(@product) %>
+<% method = opening.persisted? ? :put : :post %>
+
+<div class="modal fade" id="<%= modal_id %>" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<%= simple_form_for opening, url: url, method: method, namespace: modal_id do |f| %>
+				<div class="modal-header">
+					<h5 class="modal-title"><%= modal_title %></h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<%= f.error_notification %>
+					<%= f.input :title, as: :string %>
+					<%= f.input :description, as: :rich_text_area %>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+					<%= f.button :submit, "Save", class: "btn btn-secondary" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
