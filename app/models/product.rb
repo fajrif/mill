@@ -6,6 +6,7 @@ class Product < ApplicationRecord
 	has_one_attached :image, dependent: :purge
 	has_many_attached :images, dependent: :purge
 	has_one_attached :banner, dependent: :purge
+	has_one_attached :technical_drawing, dependent: :purge
 
 	validates :image, attached: true, content_type: ['image/png', 'image/jpeg'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
@@ -13,8 +14,11 @@ class Product < ApplicationRecord
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
   validates :banner, attached: true, content_type: ['image/png', 'image/jpeg'],
 										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
+	validates :technical_drawing, content_type: ['image/png', 'image/jpeg'],
+										size: { less_than: 50.megabytes, message: 'Image maximum 50MB' }
 	validates_presence_of :name
 	validates_uniqueness_of :name
+	validates :code, presence: true, uniqueness: true
 
 	def should_generate_new_friendly_id?
 		self.name_changed?

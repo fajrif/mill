@@ -10207,8 +10207,8 @@ nav.navbar.bootsnav .navbar-toggle {
 
 .mobile-toggle span {
   display: block;
-  width: 30px;
-  height: 3px;
+  width: 40px;
+  height: 4px;
   background: #000000;
   content: "";
   margin-bottom: 5px;
@@ -10221,7 +10221,7 @@ nav.navbar.bootsnav .navbar-toggle {
 }
 
 .mobile-toggle span:last-child {
-  width: 15px;
+  width: 23px;
 }
 
 .mobile-toggle:hover span,
