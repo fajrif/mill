@@ -57,6 +57,7 @@
 <!-- end product feature section -->
 
 <!-- start product description section -->
+<% unless @product.description.empty? %>
 <section class="product-description-section wow animate__fadeIn">
     <div class="container">
         <div class="row">
@@ -66,6 +67,7 @@
         </div>
     </div>
 </section>
+<% end %>
 <!-- end product description section -->
 
 <!-- start opening possibilities section -->
