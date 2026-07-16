@@ -14,13 +14,13 @@
 
 /* Sticky viewport – stays fixed while user scrolls through wrapper */
 .text-parallax-sticky {
-    position: sticky;
-    top: 0;
+    position: static;
     /*height: 100vh;*/
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    /* visible so the scattered characters aren't clipped mid-assembly */
+    overflow: visible;
     /*background: #ffffff;*/
 }
 
@@ -39,10 +39,10 @@
     display: block;
     /*margin-bottom: 4px;*/
     font-family: 'Inter', sans-serif;
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
     font-weight: 300;
     color: #1a1a1a;
-    line-height: 1;
+    line-height: 1.15;
     white-space: nowrap;
 }
 
@@ -74,10 +74,6 @@
 
 /* Responsive text parallax */
 @media (max-width: 991px) {
-    .text-parallax-wrapper {
-        height: 200vh;
-    }
-
     .text-parallax-line {
         font-size: clamp(1.4rem, 3.5vw, 2.5rem);
         white-space: normal;
@@ -89,10 +85,6 @@
 }
 
 @media (max-width: 575px) {
-    .text-parallax-wrapper {
-        height: 180vh;
-    }
-
     .text-parallax-line {
         font-size: clamp(1.1rem, 5vw, 1.8rem);
     }
@@ -110,6 +102,55 @@
 .aluminium-solutions-section {
     /*padding: 0 0 100px 0;*/
     background: #ffffff;
+}
+
+/* Desktop: sticky-based pinning. The pin-track provides the scroll distance;
+   the stage sticks to the top (native CSS position:sticky) and holds the
+   full-viewport orbit while the sequence scrubs, then releases seamlessly.
+   The section never switches to position:fixed, so there is no swap/jump on
+   release (unlike GSAP's pin, which reparents to fixed then back to flow). */
+@media (min-width: 992px) {
+    .aluminium-solutions-section {
+        padding: 0; /* override the theme's global section { padding: 100px 0 } */
+        /* The theme's global `section { overflow: hidden }` would break the
+           descendant sticky, so allow overflow here (the stage clips instead). */
+        overflow: visible;
+    }
+
+    .aluminium-pin-track {
+        position: relative;
+        height: 300vh; /* 100vh stage + ~200vh of scrubbed animation + hold */
+    }
+
+    .aluminium-stage {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        /* Clip the intentional left-bleed image at the viewport edge. A sticky
+           element's OWN overflow does not break its stickiness (only an
+           ancestor scroll-container would); clip avoids creating one. */
+        overflow-x: clip;
+    }
+
+    .aluminium-orbit-outer {
+        width: 100%;
+    }
+}
+
+/* Reduced motion: no scrubbed sequence (JS skips it), so collapse the tall
+   track and sticky so the section is a normal single-viewport block. */
+@media (min-width: 992px) and (prefers-reduced-motion: reduce) {
+    .aluminium-pin-track {
+        height: auto;
+    }
+
+    .aluminium-stage {
+        position: static;
+        min-height: 100vh;
+        height: auto;
+    }
 }
 
 @media (max-width: 991px) {
@@ -137,51 +178,120 @@
     box-shadow:
         0 10px 30px rgba(0, 0, 0, 0.15),
         0 6px 20px rgba(0, 0, 0, 0.1);
-    animation: float 6s ease-in-out infinite;
     will-change: transform;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Stagger floating animations */
-.floating-card:nth-child(1) {
-    animation-delay: 0s;
+/* Orbit Layout - scattered circular image arrangement around centered text */
+.aluminium-orbit-outer {
+    padding: 0 20px;
 }
 
-.floating-card:nth-child(2) {
-    animation-delay: 1.2s;
+.aluminium-orbit {
+    position: relative;
+    /* Size to the smaller of: container width, 1800px, or the width that keeps
+       the orbit's height within the viewport — so the full orbit fits on screen
+       while the section is pinned. */
+    width: min(100%, 1800px, calc(84vh * 1824 / 1030));
+    margin: 0 auto;
+    aspect-ratio: 1824 / 1030;
 }
 
-.floating-card:nth-child(3) {
-    animation-delay: 2.4s;
+.aluminium-orbit .aluminium-image-wrapper {
+    position: absolute;
+    will-change: transform, opacity;
 }
 
-.floating-card:nth-child(4) {
-    animation-delay: 3.6s;
+.aluminium-orbit-slot-1 {
+    top: 2%;
+    left: 5%;
+    width: 13.2%;
+    aspect-ratio: 241 / 290;
 }
 
-.floating-card:nth-child(5) {
-    animation-delay: 4.8s;
+.aluminium-orbit-slot-2 {
+    top: 1%;
+    left: 51.25%;
+    width: 20.6%;
+    aspect-ratio: 375 / 187;
 }
 
-/* Floating Animation */
-@keyframes float {
+.aluminium-orbit-slot-3 {
+    top: 9%;
+    left: 82.5%;
+    width: 14.6%;
+    aspect-ratio: 267 / 293;
+}
 
-    0%,
-    100% {
-        transform: translateY(0px);
+.aluminium-orbit-slot-4 {
+    top: 42%;
+    left: -6%;
+    width: 18.9%;
+    aspect-ratio: 345 / 249;
+}
+
+.aluminium-orbit-slot-5 {
+    top: 63%;
+    left: 32%;
+    width: 17.3%;
+    aspect-ratio: 315 / 303;
+}
+
+.aluminium-orbit-slot-6 {
+    top: 59%;
+    left: 74%;
+    width: 20.4%;
+    aspect-ratio: 372 / 240;
+}
+
+.aluminium-orbit-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Wide enough that the longest line fits without overflowing, so
+       text-align:center actually centers every line (a nowrap line wider
+       than its box ignores centering and left-anchors instead). */
+    width: 64%;
+    max-width: 1040px;
+    text-align: center;
+    z-index: 2;
+}
+
+@media (max-width: 991px) {
+    .aluminium-orbit {
+        position: static;
+        aspect-ratio: unset;
+        max-width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
     }
 
-    50% {
-        transform: translateY(-15px);
+    .aluminium-orbit .aluminium-image-wrapper {
+        position: static;
+        width: calc(50% - 10px);
+        aspect-ratio: 4 / 3;
+    }
+
+    .aluminium-orbit-text {
+        position: static;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+}
+
+@media (max-width: 575px) {
+    .aluminium-orbit .aluminium-image-wrapper {
+        width: 100%;
     }
 }
 
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
-    .floating-card {
-        animation: none;
-    }
-
     .aluminium-text em {
         animation: none !important;
     }
@@ -191,6 +301,8 @@
 .aluminium-image {
     position: relative;
     overflow: hidden;
+    width: 100%;
+    height: 100%;
     transition: transform 0.3s ease-in-out;
     transform: scale(1);
 }
@@ -198,7 +310,8 @@
 .aluminium-image img {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -299,18 +412,6 @@
 .aluminium-image {
     backface-visibility: hidden;
     -webkit-font-smoothing: antialiased;
-}
-
-/* Ensure images maintain aspect ratio */
-.aluminium-image img {
-    object-fit: cover;
-    min-height: 200px;
-}
-
-@media (min-width: 992px) {
-    .aluminium-image img {
-        min-height: 280px;
-    }
 }
 
 /* Mobile touch optimization */

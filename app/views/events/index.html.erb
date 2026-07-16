@@ -59,5 +59,11 @@
                 </div>
             <% end %>
         <% end %>
+
+        <% if !upcoming_events.any? && !past_events.any? %>
+          <div class="text-center">
+            <p class="alt-font text-large">No events available at this time.</p>
+          </div>
+        <% end %>
     </div>
 </section>

@@ -1,24 +1,30 @@
 <section class="big-section pb-0 wow animate__fadeIn">
     <div class="container">
-      <div class="row justify-content-center">
-          <% @articles.each_with_index do |article, index| %>
-            <!-- start services item -->
-            <div class="col-12 col-md-4 margin-40px-bottom sm-margin-20px-bottom wow animate__fadeInUp">
-                <div class="margin-20px-bottom overflow-hidden image-hover-style-1">
-                  <a href="<%= article_path(article) %>">
-                    <%= image_tag url_for(article.image.variant(resize_to_fill: [360, 380])), class: "w-100" %>
-                  </a>
-                </div>
-                <div>
-                  <a href="<%= article_path(article) %>" class="alt-font margin-10px-bottom d-block text-extra-large text-extra-dark-gray font-weight-400"><%= article.title %></a>
-                  <p><%= article.short_description %></p>
-                </div>
-            </div>
-            <!-- end services item -->
-          <% end %>
-      </div>
-      <div class="text-center margin-five-bottom wow animate__fadeInUp">
-        <%= paginate @articles, theme: :pofo %>
-      </div>
+      <% if @articles.any? %>
+        <div class="row justify-content-center">
+            <% @articles.each_with_index do |article, index| %>
+              <!-- start services item -->
+              <div class="col-12 col-md-4 margin-40px-bottom sm-margin-20px-bottom wow animate__fadeInUp">
+                  <div class="margin-20px-bottom overflow-hidden image-hover-style-1">
+                    <a href="<%= article_path(article) %>">
+                      <%= image_tag url_for(article.image.variant(resize_to_fill: [360, 380])), class: "w-100" %>
+                    </a>
+                  </div>
+                  <div>
+                    <a href="<%= article_path(article) %>" class="alt-font margin-10px-bottom d-block text-extra-large text-extra-dark-gray font-weight-400"><%= article.title %></a>
+                    <p><%= article.short_description %></p>
+                  </div>
+              </div>
+              <!-- end services item -->
+            <% end %>
+        </div>
+        <div class="text-center margin-five-bottom wow animate__fadeInUp">
+          <%= paginate @articles, theme: :pofo %>
+        </div>
+      <% else %>
+        <div class="text-center">
+          <p class="alt-font text-large">No articles found.</p>
+        </div>
+      <% end %>
     </div>
 </section>

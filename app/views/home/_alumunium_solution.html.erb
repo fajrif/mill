@@ -1,35 +1,35 @@
 <!-- start aluminium solutions section -->
 <section class="aluminium-solutions-section" id="aluminium-solutions">
-    <!-- Image Gallery Below -->
-    <div class="container">
-        <!-- Top Row: 3 Images portrait -->
-        <div class="row justify-content-center align-items-center" id="portrait-images-row">
-            <div class="col-12 col-lg-4 col-md-6 mb-4 mb-lg-0 wow animate__fadeInUp" data-wow-delay="0.1s">
-                <div class="aluminium-image-wrapper floating-card">
-                    <div class="aluminium-image">
-                        <%= image_tag('placeholder-3.jpg', alt: 'Premium aluminium sliding doors', class: 'img-fluid') %>
-                    </div>
+  <!-- pin-track gives the scroll distance; the stage sticks (CSS sticky) so the
+       section never leaves normal flow — it releases seamlessly, with no
+       position:fixed swap, unlike GSAP's pin. -->
+  <div class="aluminium-pin-track">
+    <div class="aluminium-stage">
+        <div class="container-fluid aluminium-orbit-outer">
+        <div class="aluminium-orbit" id="portrait-images-row">
+            <div class="aluminium-image-wrapper floating-card aluminium-orbit-slot-1">
+                <div class="aluminium-image">
+                    <%= image_tag('new-images/image-1.png', alt: 'Premium aluminium sliding doors', class: 'img-fluid') %>
                 </div>
             </div>
-            <div class="col-12 col-lg-4 col-md-6 mb-4 mb-lg-0 wow animate__fadeInUp" data-wow-delay="0.2s">
-                <div class="aluminium-image-wrapper floating-card">
-                    <div class="aluminium-image">
-                        <%= image_tag('placeholder-5.jpg', alt: 'Expansive aluminium glass walls', class: 'img-fluid') %>
-                    </div>
+            <div class="aluminium-image-wrapper floating-card aluminium-orbit-slot-2">
+                <div class="aluminium-image">
+                    <%= image_tag('new-images/image-5.png', alt: 'Expansive aluminium glass walls', class: 'img-fluid') %>
                 </div>
             </div>
-            <div class="col-12 col-lg-4 col-md-6 wow animate__fadeInUp" data-wow-delay="0.3s">
-                <div class="aluminium-image-wrapper floating-card">
-                    <div class="aluminium-image">
-                        <%= image_tag('placeholder-4.jpg', alt: 'Minimalist aluminium window frames', class: 'img-fluid') %>
-                    </div>
+            <div class="aluminium-image-wrapper floating-card aluminium-orbit-slot-3">
+                <div class="aluminium-image">
+                    <%= image_tag('new-images/image-6.png', alt: 'Minimalist aluminium window frames', class: 'img-fluid') %>
                 </div>
             </div>
-        </div>
+            <div class="aluminium-image-wrapper floating-card aluminium-orbit-slot-4">
+                <div class="aluminium-image">
+                    <%= image_tag('new-images/image-2.png', alt: 'Aluminium framed balcony detail', class: 'img-fluid') %>
+                </div>
+            </div>
 
-        <!-- Center: Text Description -->
-        <div class="row justify-content-center mb-5">
-            <div class="col-12 col-lg-10 col-md-11">
+            <!-- Center: Text Description -->
+            <div class="aluminium-orbit-text">
                 <!-- Text Parallax Area -->
                 <div class="text-parallax-wrapper">
                     <div class="text-parallax-sticky">
@@ -46,28 +46,22 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <div class="aluminium-image-wrapper floating-card aluminium-orbit-slot-5">
+                <div class="aluminium-image">
+                    <%= image_tag('new-images/image-4.png', alt: 'Modern aluminium window solution with panoramic views', class: 'img-fluid') %>
+                </div>
+            </div>
+            <div class="aluminium-image-wrapper floating-card aluminium-orbit-slot-6">
+                <div class="aluminium-image">
+                    <%= image_tag('new-images/image-3.png', alt: 'Sleek aluminium framing for contemporary architecture', class: 'img-fluid') %>
+                </div>
             </div>
         </div>
-
-        <!-- Bottom Row: 2 Images landscape -->
-        <div class="row justify-content-center align-items-center">
-            <div class="col-12 col-lg-6 col-md-6 mb-5 wow animate__fadeInUp" data-wow-delay="0.4s">
-                <div class="aluminium-image-wrapper floating-card">
-                    <div class="aluminium-image">
-                        <%= image_tag('placeholder-1.jpg', alt: 'Modern aluminium window solution with panoramic views', class: 'img-fluid') %>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6 col-md-6 mb-5 wow animate__fadeInUp" data-wow-delay="0.5s">
-                <div class="aluminium-image-wrapper floating-card">
-                    <div class="aluminium-image">
-                        <%= image_tag('placeholder-2.jpg', alt: 'Sleek aluminium framing for contemporary architecture', class: 'img-fluid') %>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
+  </div>
 </section>
 <!-- end aluminium solutions section -->
 
@@ -78,29 +72,20 @@
 
   // Check if GSAP is available
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-    console.warn('Text Parallax: GSAP or ScrollTrigger not loaded');
+    console.warn('Aluminium Solutions: GSAP or ScrollTrigger not loaded');
     return;
   }
 
-  // Register ScrollTrigger
   gsap.registerPlugin(ScrollTrigger);
 
-  // Respect reduced motion preferences
-  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReducedMotion) {
-    document.querySelectorAll('[data-parallax-text]').forEach(function(span) {
-      span.style.opacity = '1';
-    });
-    return;
-  }
+  var section = document.getElementById('aluminium-solutions');
+  var orbit = document.querySelector('.aluminium-orbit');
+  var track = document.querySelector('.aluminium-pin-track');
+  if (!section || !orbit || !track) return;
 
-  // Find all text elements to split into characters
+  // Split the center text into individual character spans (structure only).
   var textElements = document.querySelectorAll('[data-parallax-text]');
-  if (textElements.length === 0) return;
-
   var allChars = [];
-
-  // Split each text element into individual character spans
   textElements.forEach(function(el) {
     var text = el.textContent;
     el.textContent = '';
@@ -122,49 +107,103 @@
     }
   });
 
-  // Random number helper
+  var imageWrappers = gsap.utils.toArray('.aluminium-image-wrapper');
+
+  // Respect reduced motion: show the final layout, no animation, no pin.
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    gsap.set(allChars, { opacity: 1 });
+    return;
+  }
+
   function randomBetween(min, max) {
     return Math.random() * (max - min) + min;
   }
 
-  // Set initial scattered state for each character
-  allChars.forEach(function(charEl) {
-    gsap.set(charEl, {
+  // Precompute a stable scattered start state for each character.
+  var scatter = allChars.map(function() {
+    return {
       x: randomBetween(-300, 300),
       y: randomBetween(-150, 150),
       z: randomBetween(-500, 100),
       rotateY: randomBetween(-120, 120),
       rotateX: randomBetween(-30, 30),
-      scale: randomBetween(0.2, 0.6),
-      opacity: 0
-    });
+      scale: randomBetween(0.2, 0.6)
+    };
   });
 
-  // Create the scroll-triggered animation
-  // Use the portrait images row as the trigger so text animates while images appear
-  var imagesRow = document.querySelector('#portrait-images-row');
-  if (!imagesRow) return;
+  var mm = gsap.matchMedia();
 
-  gsap.to(allChars, {
-    x: 0,
-    y: 0,
-    z: 0,
-    rotateY: 0,
-    rotateX: 0,
-    scale: 1,
-    opacity: 1,
-    duration: 1,
-    ease: 'power2.out',
-    stagger: {
-      each: 0.02,
-      from: 'random'
-    },
-    scrollTrigger: {
-      trigger: imagesRow,
-      start: 'top 80%',
-      end: 'bottom 20%',
-      scrub: 1.5
-    }
+  // Desktop / wide: the stage is pinned via CSS position:sticky, so we DON'T
+  // use GSAP's pin (which would swap the section to position:fixed and back,
+  // causing the jarring "replace" on release). Instead we just scrub the
+  // timeline against the pin-track's scroll range while the stage stays stuck.
+  // Images rise in from below one-by-one into their orbit slots while the
+  // center text reforms; the finished layout then holds, and the stage
+  // releases seamlessly as native sticky un-sticks.
+  mm.add('(min-width: 992px)', function() {
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: track,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: true,
+        invalidateOnRefresh: true
+      }
+    });
+
+    // Images: rise up from below into their CSS orbit positions, one-by-one.
+    // fromTo (explicit endpoints) keeps the reveal refresh-safe under pinning.
+    tl.fromTo(imageWrappers,
+      { y: 220, autoAlpha: 0 },
+      {
+        y: 0, autoAlpha: 1,
+        ease: 'power2.out', duration: 1, stagger: 0.5
+      },
+      0
+    );
+
+    // Text: scattered characters reassemble, concurrently, finishing last.
+    // Function-based from-values apply each char's stable scatter offset.
+    tl.fromTo(allChars,
+      {
+        x: function(i) { return scatter[i].x; },
+        y: function(i) { return scatter[i].y; },
+        z: function(i) { return scatter[i].z; },
+        rotateY: function(i) { return scatter[i].rotateY; },
+        rotateX: function(i) { return scatter[i].rotateX; },
+        scale: function(i) { return scatter[i].scale; },
+        opacity: 0
+      },
+      {
+        x: 0, y: 0, z: 0, rotateY: 0, rotateX: 0, scale: 1, opacity: 1,
+        ease: 'power2.out', duration: 2.4,
+        stagger: { each: 0.02, from: 'random' }
+      },
+      0
+    );
+
+    // Hold: keep the completed layout pinned and static for the last third of
+    // the scroll, so the finished composition is clearly seen before the
+    // section releases and glides smoothly into the next section.
+    tl.to({}, { duration: tl.duration() * 0.5 });
+  });
+
+  // Narrow: no pin/scrub (janky on touch). Static stacked layout with a
+  // light fade-in-from-below for the images; text simply shown formed.
+  mm.add('(max-width: 991px)', function() {
+    gsap.set(allChars, { opacity: 1 });
+
+    gsap.set(imageWrappers, { autoAlpha: 0, y: 40 });
+    ScrollTrigger.batch(imageWrappers, {
+      start: 'top 88%',
+      once: true,
+      onEnter: function(batch) {
+        gsap.to(batch, {
+          autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.12, ease: 'power2.out'
+        });
+      }
+    });
   });
 })();
 </script>
