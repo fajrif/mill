@@ -242,3 +242,28 @@
         height: 250px;
     }
 }
+
+@media (max-width: 768px) {
+  .container .hover-option2 .grid-item figcaption,
+  .hover-option2 .grid-item figcaption {
+    opacity: 1;
+    top: 20px;
+    left: 20px;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.55);
+  }
+
+  .hover-option2 .grid-item .portfolio-hover-content {
+    bottom: 0;
+  }
+
+  .hover-option2 .grid-item figure:hover img {
+    -webkit-filter: none;
+    filter: none;
+    opacity: 1;
+    transform: none;
+    -webkit-transform: none;
+  }
+}

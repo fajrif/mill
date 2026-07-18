@@ -8,7 +8,7 @@
     <div class="footer-widget-area padding-six-tb sm-padding-30px-tb">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-5 widget md-margin-30px-bottom text-center text-sm-start">
+                <div class="col-12 col-md-5 widget md-margin-30px-bottom sm-margin-30px-top text-center text-sm-start">
                     <!-- start logo -->
                     <%= link_to root_path, class: "margin-20px-bottom d-inline-block" do %>
                       <%= image_tag('logo.png', class: "footer-logo") %>
@@ -43,7 +43,7 @@
                     </div>
                     <!-- end contact information -->
                     <!-- start contact information -->
-                    <div class="col-12 col-md-3 widget text-center text-md-start padding-45px-left md-padding-15px-left xs-margin-30px-bottom link-style-2">
+                    <div class="col-12 col-md-3 widget text-center text-md-start padding-45px-left md-padding-15px-left link-style-2">
                       <div class="widget-title alt-font text-white-2 text-uppercase margin-20px-bottom font-weight-600">Contact Us</div>
                       <div class="margin-10px-bottom"><%= link_to configatron.company_phone, "tel:#{configatron.company_phone}", class: "text-white-2 text-small" %></div>
                       <div class="margin-20px-bottom"><a href="mailto:<%= configatron.company_email %>" class="text-white-2 text-small"><%= configatron.company_email %></a></div>

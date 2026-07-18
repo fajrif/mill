@@ -17281,6 +17281,12 @@
         line-height: 23px
     }
 
+    /* parallax - fix iOS Safari background-attachment:fixed issue */
+    .parallax {
+        background-attachment: inherit !important;
+        background-position: center !important;
+    }
+
     /* opacity */
     .sm-opacity1 {
         opacity: .1
@@ -22351,7 +22357,7 @@
     }
 
     section.big-section {
-        padding: 80px 0;
+        padding: 100px 0;
     }
 
     section.extra-big-section {
