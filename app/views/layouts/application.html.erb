@@ -47,10 +47,21 @@
 	<%= csrf_meta_tags %>
 	<%= csp_meta_tag %>
 	<%= stylesheet_link_tag 'application', media: 'all' %>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PLH827XZ');</script>
+  <!-- End Google Tag Manager -->
 	<script src="https://www.google.com/recaptcha/api.js?render=<%= ENV['RECAPTCHA_V3_SITE_KEY'] %>"></script>
 	<%= yield :head %>
 </head>
 <body class="w-100">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLH827XZ"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 	<%= render "shared/header" %>
 	<%= yield %>
 	<%= render "shared/footer" %>
