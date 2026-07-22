@@ -1,3 +1,4 @@
+<% if @projects.any? %>
 <!-- start projects section -->
 
 <!-- Swiper CSS -->
@@ -19,7 +20,7 @@
             <div class="projects-carousel-col">
                 <div class="swiper projects-swiper">
                     <div class="swiper-wrapper">
-                        <% Project.all.each_with_index do |project, index| %>
+                        <% @projects.each_with_index do |project, index| %>
                             <div class="swiper-slide project-slide">
                                 <a href="<%= project_path(project) %>" class="project-slide-link">
                                     <div class="project-slide-image-wrapper<%= ' margin-100px-top sm-no-margin-top' if index.odd? %>">
@@ -113,3 +114,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!-- end projects section -->
+<% end %>

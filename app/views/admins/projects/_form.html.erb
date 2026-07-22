@@ -28,6 +28,17 @@
 		<div class="col-lg-4">
 			<div class="row">
 				<%= render "admins/shared/error_messages", :target => @project, col: 'col-lg-12' %>
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title mb-0">Settings</h5>
+						</div>
+						<div class="card-body">
+							<%= f.input :published_date, as: :string, input_html: { class: "datetimepicker", value: get_input_date_value(f.object.published_date) } %>
+							<%= f.input :status, as: :select, collection: get_published_status, value_method: :first, label_method: :last %>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

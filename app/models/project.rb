@@ -1,6 +1,12 @@
 class Project < ApplicationRecord
 
 	extend FriendlyId
+
+  include PublishedExtension
+
+  default_scope { order(published_date: :asc) }
+
+  scope :published, -> { where(status: 1) }
   friendly_id :name, use: :slugged
 
 	has_one_attached :image, dependent: :purge

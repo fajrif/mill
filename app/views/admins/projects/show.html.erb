@@ -8,6 +8,13 @@
 						<td style="width:15%;"><b>ID</b></td>
 						<td><%= @project.id %></td>
 					</tr>
+					<tr>
+						<td><b>Status</b></td>
+						<td>
+							<h5 class="fs-14 mb-1"><%= @project.published_label %></h5>
+							<p class="text-muted mb-0">Date : <%= @project.published_date_label %></p>
+						</td>
+					</tr>
 					<% if @project.image.attached? %>
 					<tr>
 						<td><b>Image</b></td>

@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
   def index
-		criteria = Project.all
+		criteria = Project.published
     @projects = criteria.page(params[:page]).per(12)
 
     respond_to do |format|
@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-		@project = Project.friendly.find(params[:id])
+		@project = Project.published.friendly.find(params[:id])
 		# Other Projects
     @projects = Project.most_recent_projects(@project.id, 2)
   end

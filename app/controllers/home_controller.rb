@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   def index
 		# get public home
 		@products = Product.all
-		@projetcs = Project.all
+		@projects = Project.published
 		@articles = Article.first(2)
   end
 

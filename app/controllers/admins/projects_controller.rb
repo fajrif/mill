@@ -52,7 +52,7 @@ class Admins::ProjectsController < Admins::BaseController
   private
 
   def params_project
-    params.require(:project).permit(:image, :banner, :name, :client_name, :short_description, :description, :caption, images: [])
+    params.require(:project).permit(:image, :banner, :name, :client_name, :short_description, :description, :caption, :status, :published_date, images: [])
   end
 
   def set_project
